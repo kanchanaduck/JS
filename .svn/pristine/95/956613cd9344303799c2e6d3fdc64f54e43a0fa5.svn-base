@@ -1,0 +1,240 @@
+<div *ngFor="let item of items">
+    <hr>
+    <div class="row pt-3 f-10 text-right">
+        <div class="col-5"></div>
+        <div class="col-7">
+            <button mat-raised-button class="bg-545E75 text-white" style="cursor: unset;">
+                <span><label for="staticEmail" class="col-8 col-form-label">Total Overtime / Emergency :</label>
+                </span>
+                <input type="text" disabled="disabled" [value]="v_total_overtime" 
+                [(ngModel)]="item.total_overtime" #txttotal_overtime
+                    class="form-control col-4">
+            </button>
+        </div>
+    </div>
+    <div class="row f-10">
+        <div class="col-12">
+            <mat-card class="pd-10">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th class="text-center">Overtime / <br> Emergency Case</th>
+                            <th>Topic</th>
+                            <th class="text-danger">OP Q'ty <br> Manpower</th>
+                            <th class="text-primary">SP Q'ty <br> Manpower</th>
+                            <th>Mins</th>
+                            <th>Total <br> (Manpower x Mins)</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-center">01-1</td>
+                            <td>OT 60 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty011($event)" #txtqty011 [(ngModel)]="item.ot_60_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty011_sp($event)" #txtqty011_sp [(ngModel)]="item.ot_60_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin011 [value]="60">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal011 [(ngModel)]="item.ot_60_total" [value]="v_total011">
+                            </td>
+                            <td><span style="visibility: hidden;">.</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">01-2</td>
+                            <td>OT 120 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty012($event)" #txtqty012 [(ngModel)]="item.ot_120_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty012_sp($event)" #txtqty012_sp [(ngModel)]="item.ot_120_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin012 [value]="120">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal012 [(ngModel)]="item.ot_120_total" [value]="v_total012">
+                            </td>
+                            <td><span style="visibility: hidden;">.</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">01-3</td>
+                            <td>OT 150 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty013($event)" #txtqty013 [(ngModel)]="item.ot_150_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty013_sp($event)" #txtqty013_sp [(ngModel)]="item.ot_150_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin013 [value]="150">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal013 [(ngModel)]="item.ot_150_total" [value]="v_total013">
+                            </td>
+                            <td><span style="visibility: hidden;">.</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">01-4</td>
+                            <td>OT Other</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty014($event)" #txtqty014 [(ngModel)]="item.ot_other_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty014_sp($event)" #txtqty014_sp [(ngModel)]="item.ot_other_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty014_2($event)" #txtmin014 [(ngModel)]="item.ot_other_min">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal014 [(ngModel)]="item.ot_other_total" [value]="v_total014">
+                            </td>
+                            <td><span style="visibility: hidden;">.</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-1</td>
+                            <td>Clinic 30 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty021($event)" #txtqty021 [(ngModel)]="item.clinic_30_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty021_sp($event)" #txtqty021_sp [(ngModel)]="item.clinic_30_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin021 [value]="30">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal021 [(ngModel)]="item.clinic_30_total" [value]="v_total021">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-2</td>
+                            <td>Clinic 60 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty022($event)" #txtqty022 [(ngModel)]="item.clinic_60_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty022_sp($event)" #txtqty022_sp [(ngModel)]="item.clinic_60_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin022 [value]="60">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal022 [(ngModel)]="item.clinic_60_total" [value]="v_total022">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-3</td>
+                            <td>Clinic 90 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty023($event)" #txtqty023 [(ngModel)]="item.clinic_90_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty023_sp($event)" #txtqty023_sp [(ngModel)]="item.clinic_90_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin023 [value]="90">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal023 [(ngModel)]="item.clinic_90_total" [value]="v_total023">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-4</td>
+                            <td>Clinic 120 Mins</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty024($event)" #txtqty024 [(ngModel)]="item.clinic_120_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty024_sp($event)" #txtqty024_sp [(ngModel)]="item.clinic_120_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txtmin024 [value]="120">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal024 [(ngModel)]="item.clinic_120_total" [value]="v_total024">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-5</td>
+                            <td>Clinic Other</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty025($event)" #txtqty025 [(ngModel)]="item.clinic_other_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty025_sp($event)" #txtqty025_sp [(ngModel)]="item.clinic_other_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty025_2($event)" #txtmin025 [(ngModel)]="item.clinic_other_min">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal025 [(ngModel)]="item.clinic_other_total" [value]="v_total025">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">02-6</td>
+                            <td>Leave 0.5 Day</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty026($event)" #txtqty026 [(ngModel)]="item.leave_halfe_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty026_sp($event)" #txtqty026_sp [(ngModel)]="item.leave_halfe_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty026_2($event)" #txtmin026 [(ngModel)]="item.leave_halfe_min">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal026 [(ngModel)]="item.leave_halfe_total" [value]="v_total026">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">03</td>
+                            <td>Manpower Out Flow</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty03($event)" #txtqty03 [(ngModel)]="item.out_flow_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty03_sp($event)" #txtqty03_sp [(ngModel)]="item.out_flow_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty03_2($event)" #txtmin03 [(ngModel)]="item.out_flow_min">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal03 [(ngModel)]="item.out_flow_total" [value]="v_total03">
+                            </td>
+                            <td class="text-danger"><span>(เวลาที่พนักงานไม่ได้ปฏิบัติงานเท่านั้น)</span></td>
+                        </tr>
+                        <tr>
+                            <td class="text-center">04</td>
+                            <td>Manpower In Flow</td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty04($event)" #txtqty04 [(ngModel)]="item.in_flow_qty">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty04_sp($event)" #txtqty04_sp [(ngModel)]="item.in_flow_qty_sp">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control input-bgcolor" (keyup)="onKeyqty04_2($event)" #txtmin04 [(ngModel)]="item.in_flow_min">
+                            </td>
+                            <td>
+                                <input type="text" disabled="disabled" class="form-control" #txttotal04 [(ngModel)]="item.in_flow_total" [value]="v_total04">
+                            </td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </mat-card>
+        </div>
+    </div>
+</div>

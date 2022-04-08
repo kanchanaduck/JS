@@ -1,0 +1,23 @@
+<div *ngFor="let item of items">
+    <h1 mat-dialog-title>{{ headers }}</h1>
+
+    <input matInput [(ngModel)]="item.shift_code" #shift_code style="visibility: hidden;">
+
+    <div class="row">
+        <div class="col-12">
+            <mat-form-field hintLabel="Max 1 characters">
+                <mat-label>Detail: </mat-label>
+                <input matInput [(ngModel)]="item.shift_detail" #shift_detail required maxlength="1">
+                <mat-hint align="end">{{item.shift_detail?.length || 0}}/1</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-2 offset-8"><button mat-button mat-dialog-close>No Thanks</button></div>
+        <div class="col-2">
+            <button mat-raised-button class="bg-0f4289" mat-dialog-close
+                (click)="submit(button,item)">{{ button }}</button>
+        </div>
+    </div>
+</div>

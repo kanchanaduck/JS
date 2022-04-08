@@ -1,0 +1,124 @@
+<!-- <div *ngIf="loading">
+    <app-spinner></app-spinner>
+</div> -->
+
+<div class="page-breadcrumb p-b-20 p-l-30 p-r-30">
+    <div class="align-self-center">
+        <h4 class="page-title text-themecolor m-0">Setting > <span style="color: black;">Manpower</span></h4>
+    </div>
+</div>
+
+<mat-card>
+    <mat-card-content>
+        <mat-card-title>Upload Manpower (.xlsx)</mat-card-title>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="mat-focus-indicator m-l-15 input-file-button mat-raised-button mat-button-base mat-primary bg-679186">
+                    <span class="mat-button-wrapper">
+                        <input class="form-control" type="file" (change)="saveFile($event)" #fileinput />
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <button mat-mini-fab mat-raised-button class=" bg-679195" #tooltip="matTooltip" matTooltip="Upload file Manpower" (click)="uploadFile();">
+                    <mat-icon><img src="assets/images/icon/baseline_cloud_upload_white_24dp.png"></mat-icon>
+                </button>
+            </div>
+            <div class="col-md-5">
+                <span>Download Format Manpower : &nbsp; </span>
+                <a mat-mini-fab color="accent" class="bg-3655b3" style="cursor: pointer" (click)="exportFile()">
+                    <mat-icon><img src="assets/images/icon/baseline_cloud_download_white_24dp.png"></mat-icon>
+                </a>
+            </div>
+        </div>
+        <br>
+        <div *ngIf="loading">
+            <app-progress-bar-indeterminate></app-progress-bar-indeterminate>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<div class="row">
+    <div class="col-12" style="text-align: right;">
+        <button mat-mini-fab class="bg-jungle-green" (click)="openDialog('Add')">
+            <img src="assets/images/icon/baseline_add_white_18dp.png">
+        </button>
+    </div>
+</div>
+
+<mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia" #input>
+</mat-form-field>
+<div class="row f-10">
+    <div class="col-12">
+        <div class="mat-elevation-z8 table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <!-- Action Column -->
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef> Action </th>
+                    <td mat-cell *matCellDef="let row" class="action-link">
+                        <a (click)="openDialog(row)">
+                            <mat-icon><img src="assets/images/icon/create-new-pencil-button.png"></mat-icon>
+                        </a>
+                        <a (click)="openDialogDelete(row)">
+                            <mat-icon><img src="assets/images/icon/delete.png"></mat-icon>
+                        </a>
+                    </td>
+                </ng-container>
+
+                <!-- Column -->
+                <ng-container matColumnDef="wc_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>wc</th>
+                    <td mat-cell *matCellDef="let row"> {{row.wc_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="model_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>model</th>
+                    <td mat-cell *matCellDef="let row"> {{row.model_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="process_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>process</th>
+                    <td mat-cell *matCellDef="let row"> {{row.process_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="cell_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>cell</th>
+                    <td mat-cell *matCellDef="let row"> {{row.cell_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="shift_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>shift</th>
+                    <td mat-cell *matCellDef="let row"> {{row.shift_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="manpower">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>manpower</th>
+                    <td mat-cell *matCellDef="let row"> {{row.manpower}} </td>
+                </ng-container>
+                <ng-container matColumnDef="op_meister">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>1</th>
+                    <td mat-cell *matCellDef="let row"> {{row.op_meister}} </td>
+                </ng-container>
+                <ng-container matColumnDef="sp_meister">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>5</th>
+                    <td mat-cell *matCellDef="let row"> {{row.sp_meister}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="block_group_detail">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>block group</th>
+                    <td mat-cell *matCellDef="let row"> {{row.block_group_detail}} </td>
+                </ng-container>
+                <ng-container matColumnDef="gb_cell_code">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>gobal cell code</th>
+                    <td mat-cell *matCellDef="let row"> {{row.gb_cell_code}} </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                <!-- Row shown when there is no matching data. -->
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[8, 25, 100, 150]" showFirstLastButtons></mat-paginator>
+        </div>
+    </div>
+</div>

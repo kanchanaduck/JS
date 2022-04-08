@@ -1,0 +1,81 @@
+<div *ngFor="let item of items">
+    <h1 mat-dialog-title>{{ headers }}</h1>
+
+    <input matInput [(ngModel)]="item.id" #id style="visibility: hidden;">
+
+    <div class="row">
+        <div class="col-6">
+            <mat-form-field>
+                <mat-label>First Name: </mat-label>
+                <input matInput [(ngModel)]="item.fname" #fname required>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field>
+                <mat-label>Last Name: </mat-label>
+                <input matInput [(ngModel)]="item.lname" #lname required>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <div class="col-6">
+            <mat-form-field hintLabel="Max 6 characters">
+                <mat-label>User Name: </mat-label>
+                <input matInput [(ngModel)]="item.userid" #userid required maxlength="6">
+                <mat-hint align="end">{{item.userid?.length || 0}}/6</mat-hint>
+            </mat-form-field>
+        </div>
+        <div class="col-6">
+            <mat-form-field hintLabel="Max 6 characters">
+                <mat-label>Password: </mat-label>
+                <input matInput [(ngModel)]="item.password" #password required maxlength="6">
+                <mat-hint align="end">{{item.password?.length || 0}}/6</mat-hint>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row pt-5">
+        <div class="col-6">
+            User right:&nbsp;&nbsp;
+            <mat-radio-group [formControl]="floatLabelControl">
+                <mat-radio-button value="Admin">Admin</mat-radio-button>
+                &nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="User">User</mat-radio-button>
+                &nbsp;&nbsp;&nbsp;
+                <mat-radio-button value="Viewer">Viewer</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div class="col-6">
+            Status:&nbsp;&nbsp; ไม่ได้ใช้งาน&nbsp;
+            <mat-slide-toggle [(ngModel)]="item.statusactive" class="example-margin" [checked]="true" (change)="onChange($event)"></mat-slide-toggle>&nbsp;&nbsp;ใช้งาน
+        </div>
+    </div>
+
+    <div class="row pt-3">
+        <div class="col-2 offset-8"><button mat-button mat-dialog-close>No Thanks</button></div>
+        <div class="col-2">
+            <button mat-raised-button class="bg-0f4289" mat-dialog-close (click)="submit(button,item)">{{ button }}</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .example-container .mat-form-field+.mat-form-field {
+        margin-left: 8px;
+    }
+    
+    .example-container .mat-form-field {
+        width: 220px;
+    }
+    
+    .example-container form {
+        margin-bottom: 20px;
+    }
+    
+    .example-container form>* {
+        margin: 5px 0;
+    }
+    
+    .example-container .mat-radio-button {
+        margin: 0 12px;
+    }
+</style>

@@ -1,0 +1,115 @@
+<div *ngFor="let item of items">
+    <h1 mat-dialog-title>{{ headers }}</h1>
+
+    <input matInput [(ngModel)]="item.id" #txtid style="visibility: hidden;">
+
+    <div class="row">
+        <div class="col-3">
+            WC:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="wcControl" required (selectionChange)="fn_wc($event)">
+                    <mat-option>-- Please choose an model --</mat-option>
+                    <mat-option *ngFor="let wc of wc" [value]="wc.wc_code">
+                        {{wc.wc_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="wcControl.hasError('required')">Please choose an wc</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            Model:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="modelControl" required (selectionChange)="fn_model($event)">
+                    <mat-option>-- Please choose an model --</mat-option>
+                    <mat-option *ngFor="let model of models" [value]="model.model_code">
+                        {{model.model_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="modelControl.hasError('required')">Please choose an model</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            Process:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="processControl" required (selectionChange)="fn_process($event)">
+                    <mat-option>-- Please choose an process --</mat-option>
+                    <mat-option *ngFor="let pr of process" [value]="pr.process_code">
+                        {{pr.process_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="processControl.hasError('required')">Please choose an process</mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-3">
+            Cell:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="cellControl" required (selectionChange)="fn_cell($event)">
+                    <mat-option>-- Please choose an cell --</mat-option>
+                    <mat-option *ngFor="let cell of cell" [value]="cell.cell_code">
+                        {{cell.cell_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="cellControl.hasError('required')">Please choose an cell</mat-error>
+            </mat-form-field>
+        </div>
+    </div>
+    <div class="row pt-2">
+        <!-- <div class="col-2">
+            Category :<input type="text" class="form-control input-bgcolor" [(ngModel)]="item.category" #txtcategory>
+        </div> -->
+        <div class="col-3">
+            Shift:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="blockshiftControl" required (selectionChange)="fn_shift($event)">
+                    <mat-option>-- Please choose an block shift --</mat-option>
+                    <mat-option *ngFor="let bs of blockshift" [value]="bs.shift_code">
+                        {{bs.shift_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="blockshiftControl.hasError('required')">Please choose an shift
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-3">Manpower:<input type="text" class="form-control input-bgcolor" [(ngModel)]="item.manpower" #txtmanpower></div>
+        <div class="col-3">1 :<input type="text" class="form-control input-bgcolor" [(ngModel)]="item.op_meister" #txtone></div>
+        <div class="col-3">5 :<input type="text" class="form-control input-bgcolor" [(ngModel)]="item.sp_meister" #txtfive></div>
+        <!-- <div class="col-2">
+            <p></p>
+            <button mat-raised-button class="bg-0f4289" mat-dialog-close
+                (click)="submit(button,item)">{{ button }}</button>
+        </div> -->
+    </div>
+    <div class="row pt-2">
+
+        <div class="col-3">Block Group:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="block_GControl" required (selectionChange)="fn_block_G($event)">
+                    <mat-option>-- Please choose an block group --</mat-option>
+                    <mat-option *ngFor="let bg of block_G" [value]="bg.block_group_code">
+                        {{bg.block_group_code}} : {{bg.block_group_detail}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="block_GControl.hasError('required')">Please choose an block group
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="col-3">Gobal Cell Code:
+            <mat-form-field appearance="fill">
+                <mat-select [formControl]="gobal_cellControl" required (selectionChange)="fn_gobal_cell($event)">
+                    <mat-option>-- Please choose an gobal cell --</mat-option>
+                    <mat-option *ngFor="let gc of gobal_cell" [value]="gc.gb_cell_code">
+                        {{gc.gb_cell_code}}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="gobal_cellControl.hasError('required')">Please choose an gobal cell
+                </mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="col text-right">
+            <p></p>
+            <button mat-raised-button class="bg-0f4289" mat-dialog-close (click)="submit(button,item)">{{ button }}</button>
+        </div>
+    </div>
+
+</div>

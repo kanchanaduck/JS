@@ -1,0 +1,35 @@
+<mat-card>
+    <mat-card-content>
+        <mat-card-subtitle>
+            <div class="row">
+                <div class="col-2">
+                    <h3>Home</h3>
+                </div>
+                <div class="col-10 text-right">
+                    <button mat-raised-button class="bg-F2D0A4 text-white" (click)="submitSearch()" aria-label="button">
+                        <mat-icon><img src="assets/images/icon/baseline_search_white_24dp.png" alt="search"></mat-icon> Search
+                    </button> &nbsp;
+                    <span *ngIf="tf">
+                        <button mat-raised-button class="bg-3F826D text-white" (click)="submitUpdate()" aria-label="button">
+                            <mat-icon><img src="assets/images/icon/baseline_get_app_white_24dp.png" alt="update"></mat-icon> Update
+                        </button> &nbsp;
+                        <button mat-raised-button class="bg-545E75 text-white" (click)="submitClear()" aria-label="button">
+                            <mat-icon><img src="assets/images/icon/baseline_clear_white_24dp.png" alt="clear"></mat-icon> Clear
+                        </button> &nbsp;
+                        <button mat-raised-button class="bg-fc7e8a text-white" (click)="submitDelete()" aria-label="button">
+                            <mat-icon><img src="assets/images/icon/baseline_delete_white_24dp.png" alt="delete"></mat-icon> Delete
+                        </button> &nbsp;
+                    </span>
+                    <button mat-raised-button class="bg-89b7ff text-white" (click)="clickbarchart()" aria-label="button" #tooltip="matTooltip" matTooltip="Bar Chart">
+                        <mat-icon><img src="assets/images/icon/baseline_insert_chart_white_24dp.png" alt="bar chart"></mat-icon>
+                    </button>
+                </div>
+            </div>
+        </mat-card-subtitle>
+    </mat-card-content>
+</mat-card>
+
+<app-home-keys></app-home-keys>
+<app-home-overtime></app-home-overtime>
+<app-home-workingman></app-home-workingman>
+<app-home-losstime></app-home-losstime>

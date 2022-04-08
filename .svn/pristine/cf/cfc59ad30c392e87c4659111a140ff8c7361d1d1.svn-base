@@ -1,0 +1,19 @@
+        
+<!-- ============================================================== -->
+<!-- Profile - style you can find in header.scss -->
+<!-- ============================================================== -->
+
+<button [matMenuTriggerFor]="profile" mat-icon-button class="m-r-5" style="width: 160px;" aria-label="button"> 
+     <span style="font-size: 10pt;">{{ fname }}&nbsp;{{ lname }}</span>
+    &nbsp; 
+    <mat-icon><img src="assets/images/icon/baseline_keyboard_arrow_down_white_24dp.png" width="24" height="24" alt="down"></mat-icon>
+</button>
+<mat-menu #profile="matMenu" class="mymegamenu">
+    <div *ngIf="tf">
+        <button mat-menu-item routerLink="/user" aria-label="button">
+            <mat-icon><img src="assets/images/icon/baseline_account_box_black_24dp.png" width="24" height="24" alt="box"></mat-icon> User </button>
+    </div>
+    <button mat-menu-item routerLink="/login" aria-label="button">
+        <mat-icon><img src="assets/images/icon/baseline_exit_to_app_black_24dp.png" width="24" height="24" alt="exit"></mat-icon> Sign Out </button>
+</mat-menu>
+

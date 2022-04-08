@@ -1,0 +1,74 @@
+<div class="page-breadcrumb p-b-20 p-l-30 p-r-30">
+    <div class="align-self-center">
+        <h4 class="page-title text-themecolor m-0">Setting > <span style="color: black;">Master</span></h4>
+    </div>
+</div>
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Work Center">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-wc></app-setting-wc>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="secondFormGroup" label="Model">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-model></app-setting-model>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="thirdFormGroup" label="Process">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-cell-process></app-setting-cell-process>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="fourthFormGroup" label="Cell">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-cell></app-setting-cell>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="fifthFormGroup" label="Block Shift">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-block-shift></app-setting-block-shift>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="sixthFormGroup" label="Block Group">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-block-group></app-setting-block-group>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="seventhFormGroup" label="Gobal Cell">
+        <div class="row">
+            <div class="col-6 offset-3">
+                <app-setting-gobal-cell></app-setting-gobal-cell>
+            </div>
+        </div>
+    </mat-step>
+    <mat-step [stepControl]="eighthFormGroup" label="TSS">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <app-setting-tss-code></app-setting-tss-code>
+            </div>
+        </div>
+    </mat-step>
+</mat-horizontal-stepper>
+
+<style>
+    .mat-stepper-horizontal {
+        margin-top: 8px;
+    }
+    
+    .mat-form-field {
+        margin-top: 16px;
+    }
+</style>

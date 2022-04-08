@@ -1,0 +1,42 @@
+<!-- matTooltipPosition="right" -->
+<!-- <button mat-icon-button routerLink="/home" #tooltip="matTooltip" matTooltip="Home">
+    <mat-icon>home</mat-icon>
+</button>
+<button mat-icon-button routerLink="/charts" #tooltip="matTooltip" matTooltip="Dashboard">
+    <mat-icon>insert_chart</mat-icon>
+</button> -->
+
+<button mat-icon-button *ngFor="let menuitem of menuItems.getMenuitem()" routerLinkActive="selected" aria-label="button menu-item" [routerLink]="['/', menuitem.state]" #tooltip="matTooltip" matTooltip="{{menuitem.name}}">
+    <mat-icon>
+        <img src="assets/images/icon/{{menuitem.icon}}.png" width="24" height="24" alt="menu-item icon">
+    </mat-icon>
+</button>
+<span *ngIf="tf">
+    &nbsp;
+    <button [matMenuTriggerFor]="setting2" mat-icon-button #tooltip="matTooltip" matTooltip="Setting" aria-label="button setting">
+    <mat-icon>
+        <img src="assets/images/icon/baseline_settings_white_24dp.png" width="24" height="24" alt="baseling setting">
+    </mat-icon>
+    <mat-icon>
+        <img src="assets/images/icon/baseline_keyboard_arrow_down_white_24dp.png" width="24" height="24" alt="down">
+    </mat-icon>
+</button>
+</span>
+<mat-menu #setting2="matMenu" class="mymegamenu">
+    <button mat-menu-item routerLink="/page1" aria-label="page master">
+        <mat-icon><img src="assets/images/icon/baseline_keyboard_arrow_right_black_24dp.png" width="24" height="24" alt="right master"></mat-icon>
+        MASTER
+    </button>
+    <button mat-menu-item routerLink="/page2" aria-label="page detail">
+        <mat-icon><img src="assets/images/icon/baseline_keyboard_arrow_right_black_24dp.png" width="24" height="24" alt="right detail"></mat-icon>
+        DETAIL
+    </button>
+    <button mat-menu-item routerLink="/manpower" aria-label="page manpower">
+        <mat-icon><img src="assets/images/icon/baseline_keyboard_arrow_right_black_24dp.png" width="24" height="24" alt="right manpower"></mat-icon>
+        MANPOWER
+    </button>
+    <button mat-menu-item routerLink="/ST-DB" #tooltip="matTooltip" matTooltip="UPLOAD NADAMS & STANDARD" aria-label="page nadams">
+        <mat-icon><img src="assets/images/icon/baseline_keyboard_arrow_right_black_24dp.png" width="24" height="24" alt="right nadams"></mat-icon>
+        NADAMS & STANDARD
+    </button>
+</mat-menu>

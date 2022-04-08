@@ -1,0 +1,152 @@
+<div class="page-breadcrumb p-b-20 p-l-30 p-r-30">
+    <div class="align-self-center">
+        <h4 class="page-title text-themecolor m-0">Setting > <span style="color: black;">Upload</span></h4>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-5">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Upload Nadams</mat-card-title>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mat-focus-indicator m-l-15 input-file-button mat-raised-button mat-button-base mat-primary bg-679186">
+                            <span class="mat-button-wrapper">
+                                <input class="form-control" type="file" (change)="saveFileNadams($event)"
+                                    #fileinput />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button mat-mini-fab mat-raised-button class=" bg-679195" #tooltip="matTooltip" matTooltip="Upload file Nadams" (click)="uploadFileNadams();">
+                            <mat-icon><img src="assets/images/icon/baseline_cloud_upload_white_24dp.png" width="24" height="24" alt="img upload"></mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="loading">
+                    <app-progress-bar-indeterminate></app-progress-bar-indeterminate>
+                </div>
+                <span style="font-size: 12px;" class="text-primary">***[ Date_Time: MM/dd/yyyy HH:mm:ss OR yyyy-MM-dd HH:mm:ss ]</span>
+                <hr>
+                <span>Download Format Nadams : &nbsp; </span>
+                <a mat-mini-fab color="accent" class="bg-3655b3" style="cursor: pointer" (click)="exportNadams()">
+                    <mat-icon><img src="assets/images/icon/baseline_cloud_download_white_24dp.png" width="24" height="24" alt="img dowload"></mat-icon>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-2" style="padding: 0;">
+        <mat-card style="margin: 15px 0 0 0;">
+            <mat-card-content>
+                <mat-card-title>Connect EUC</mat-card-title>
+                <div *ngIf="loadingEUC">
+                    <app-progress-bar-indeterminate></app-progress-bar-indeterminate>
+                </div>
+                <hr>
+                <a mat-mini-fab color="accent" class="bg-3655b3" style="cursor: pointer" (click)="connectEUC()">
+                    <mat-icon><img src="assets/images/icon/update-24.png" width="24" height="24" alt="img download"></mat-icon>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+    <div class="col-5">
+        <mat-card>
+            <mat-card-content>
+                <mat-card-title>Upload Standard</mat-card-title>
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="mat-focus-indicator m-l-15 input-file-button mat-raised-button mat-button-base mat-warn bg-f9b4ab">
+                            <span class="mat-button-wrapper">
+                                <input class="form-control" type="file" (change)="saveFileStandard($event)" #fileinputST />
+                            </span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <button mat-mini-fab class="bg-ae7d78" #tooltip="matTooltip" matTooltip="Upload file Standard" (click)="uploadFileStandard();">
+                            <mat-icon><img src="assets/images/icon/baseline_cloud_upload_white_24dp.png" width="24" height="24" alt="img upload"></mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <br>
+                <div *ngIf="loadingStandard">
+                    <app-progress-bar-indeterminate></app-progress-bar-indeterminate>
+                </div>
+                <hr>
+                <span>Download Format Standard Time : &nbsp; </span>
+                <a mat-mini-fab color="accent" class="bg-3655b3" style="cursor: pointer" (click)="exportStandard()">
+                    <mat-icon><img src="assets/images/icon/baseline_cloud_download_white_24dp.png" width="24" height="24" alt="img download"></mat-icon>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-2">
+        <mat-form-field appearance="fill">
+            <input matInput [matDatepicker]="picker1" [formControl]="date" (dateChange)="startEvent('change', $event)">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+    </div>
+    <div class="col-2">
+        <button mat-raised-button class="bg-F2D0A4 text-white" (click)="search()" aria-label="button">
+            <mat-icon><img src="assets/images/icon/baseline_search_white_24dp.png" alt="search"></mat-icon> Search
+        </button> &nbsp;
+    </div>
+    <div class="col">
+        <button mat-raised-button class="bg-679195 text-white" (click)="submitcalc()" aria-label="button">
+            CALC ACTUAL MANUAL
+        </button> &nbsp;
+    </div>
+</div>
+<div class="table-responsive">
+    <table class="table table-sm mb-0  table-bordered">
+        <thead>
+            <tr>
+                <th style="width: 8% !important;">date</th>
+                <th>wc</th>
+                <th>model</th>
+                <th style="width: 9% !important;">process</th>
+                <th>cell</th>
+                <th>block shift</th>
+                <th>production shift</th>
+                <th>block group</th>
+                <th>gb cell</th>
+                <th>standardtime</th>
+                <th>worker performance</th>
+                <th>operation rate</th>
+                <th>total performance</th>
+                <th>actual outpot new</th>
+                <th>actual outpot old</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let items of getData">
+                <td>{{items.date_1}}</td>
+                <td>{{items.wc}}</td>
+                <td>{{items.model}}</td>
+                <td>{{items.process_name}}</td>
+                <td>{{items.d_cell}}</td>
+                <td>{{items.block_shift}}</td>
+                <td>{{items.production_shift}}</td>
+                <td>{{items.block_group}}</td>
+                <td>{{items.gb_cell}}</td>
+                <td>{{items.standardtime}}</td>
+                <td>{{items.worker_performance}}</td>
+                <td>{{items.operation_rate}}</td>
+                <td>{{items.total_performance}}</td>
+                <td>{{items.actual_outpot_new}}</td>
+                <td>{{items.actual_outpot_old}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<style>
+    td,
+    th {
+        width: auto !important;
+    }
+</style>
