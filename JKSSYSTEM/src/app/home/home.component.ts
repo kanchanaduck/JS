@@ -68,6 +68,7 @@ export class HomeComponent implements OnInit {
       this.items = this.serviceJksService.service_search(response.data)
 
       return response.data;
+
     } catch (error) {
       // console.log('RES ERROR SummaryAll/Search: ', error.response)
       // if (error.response.status === 400) {

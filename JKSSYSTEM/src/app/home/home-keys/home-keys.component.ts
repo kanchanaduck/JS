@@ -9,6 +9,7 @@ import { MatDatepickerInputEvent } from '@angular/material';
 import { formatDate } from '@angular/common';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
+import { Console } from 'console';
 
 interface controls {
   name: string;
@@ -230,9 +231,10 @@ export class HomeKeysComponent implements OnInit {
       this.attendance = parseInt(this.manpower_op) - parseInt(event.target.value);  // this.attendance = parseInt(this.manpower_base) - parseInt(event.target.value);   //cal old
       // this.working_time_total = ((parseInt(this.manpower_base) * 480) - (parseInt(this.txtAbsent.nativeElement.value) * 480));   //cal old
       let cal_op = this.fnCalOP();
-      console.log(this.attendance);
-      console.log(cal_op);
-      this.working_time_total = ((this.attendance + cal_op) * 480);
+      // console.log(this.attendance);
+      // console.log(cal_op);
+      //-- this.working_time_total = ((this.attendance + cal_op) * 480);
+      this.working_time_total = (this.attendance+(this.attendance_sp-this.absent<=0?this.attendance_sp:(this.attendance_sp-this.absent===this.attendance_sp?0:(this.attendance_sp-this.absent<=this.attendance_sp?this.absent:0))))*480
       //this.working_time_total = ((this.attendance * 480) - (cal_op * 480));
     } else {
       this.absent = 0;
@@ -264,10 +266,14 @@ export class HomeKeysComponent implements OnInit {
       this.manpower_base = ((parseInt(this.manpower_op) + parseInt(this.manpower_sp)) - eval(this.absent + eval(event.target.value))).toString();
       this.attendance_sp = parseInt(this.manpower_sp) - parseInt(event.target.value); // this.attendance_sp = parseInt(this.manpower_base) - parseInt(event.target.value);  // cal old
       let cal_op = this.fnCalOP();
-      this.working_time_total = ((this.attendance + cal_op) * 480);
+      //--this.working_time_total = ((this.attendance + cal_op) * 480);
+      this.working_time_total = (this.attendance+(this.attendance_sp-this.absent<=0?this.attendance_sp:(this.attendance_sp-this.absent===this.attendance_sp?0:(this.attendance_sp-this.absent<=this.attendance_sp?this.absent:0))))*480
       let support_after = (this.attendance_sp - cal_op);
-      this.working_time_total_op_sp = (support_after * 480);
-    } else {
+      //--this.working_time_total_op_sp = (support_after * 480);
+      this.working_time_total_op_sp = (this.attendance_sp-((this.attendance_sp-this.absent<=0?this.attendance_sp:(this.attendance_sp-this.absent===this.attendance_sp?0:(this.attendance_sp-this.absent<=this.attendance_sp?this.absent:0)))))*480
+
+    } 
+    else {
       this.absent_sp = 0;
       this.manpower_base = ((parseInt(this.manpower_op) + parseInt(this.manpower_sp)) - eval(this.absent + eval("0"))).toString();
       // console.log("onKeyAbsentSP: ",event.target.value);
@@ -394,7 +400,7 @@ export class HomeKeysComponent implements OnInit {
         "block_group_code": this.sh_block_G.value,
         "gb_cell_code": this.sh_gobal_cell.value
       };
-      console.log('datasNadams: ', a);
+      // console.log('datasNadams: ', a);
       this.searchST(a);
     }
   }
@@ -502,8 +508,9 @@ export class HomeKeysComponent implements OnInit {
 
     this.v_total_extrajob = this.v_extrawork + this.v_jobspecial;
     this.v_actual = (this.working_time_total + this.overtime_01_op - (this.overtime_02_op + this.overtime_03_op) + this.overtime_04_op);  // OP
-    this.v_actual_op_sp = (this.working_time_total_op_sp + this.overtime_01 - (this.overtime_02 + this.overtime_03) + this.overtime_04);  // OP + SP
-    
+    //--this.v_actual_op_sp = (this.working_time_total_op_sp + this.overtime_01 - (this.overtime_02 + this.overtime_03) + this.overtime_04);  // OP + SP
+    this.v_actual_op_sp = (this.working_time_total + this.overtime_01_op - (this.overtime_02_op + this.overtime_03_op) + this.overtime_04_op)+(this.working_time_total_op_sp + this.overtime_01 - (this.overtime_02 + this.overtime_03) + this.overtime_04)
+
     this.v_actual =isEmpty(this.v_actual);  //console.log('v_actual: ', this.v_actual)
     this.v_actual_op_sp = isEmpty(this.v_actual_op_sp);
     
@@ -572,15 +579,18 @@ export class HomeKeysComponent implements OnInit {
   }
   sv_getovertime() {
     this.get_service_search = this.ServiceJksService.getservice_search();
+    // console.log("this.get_service_search: ", this.get_service_search)
     if (this.get_service_search.length > 0) {
 
-      this.v_getovertime = this.ServiceJksService.getovertime(); // console.log('v_getovertime: ',this.v_getovertime);
+      this.v_getovertime = this.ServiceJksService.getovertime();  //console.log('this.v_getovertime: ',this.v_getovertime);
       
       ///////// OP + SP
       const overtime1 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime01'; });
       const overtime2 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime02'; });
       const overtime3 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime03'; });
       const overtime4 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime04'; });
+
+      console.log("overtime1: ", overtime1)
 
       ///////// OP
       const overtime1_op = this.v_getovertime.filter((item: any) => { return item.header_op === 'overtime01_op'; });
@@ -595,16 +605,20 @@ export class HomeKeysComponent implements OnInit {
       const overtime4_sp = this.v_getovertime.filter((item: any) => { return item.header_sp === 'overtime04_sp'; });
 
       ///////// OP + SP
-      if (overtime1.length !== 0) { this.overtime_01 = overtime1[overtime1.length - 1].value; } else { this.overtime_01 = this.get_service_search[0].overtime_op_sp; }
-      if (overtime2.length !== 0) { this.overtime_02 = overtime2[overtime2.length - 1].value; } else { this.overtime_02 = this.get_service_search[0].accident_op_sp; }
-      if (overtime3.length !== 0) { this.overtime_03 = overtime3[overtime3.length - 1].value; } else { this.overtime_03 = this.get_service_search[0].manpower_out_flow_op_sp; }
-      if (overtime4.length !== 0) { this.overtime_04 = overtime4[overtime4.length - 1].value; } else { this.overtime_04 = this.get_service_search[0].manpower_in_flow_op_sp; }
+      //-- if (overtime1.length !== 0) { this.overtime_01 = overtime1[overtime1.length - 1].value; } else { this.overtime_01 = this.get_service_search[0].overtime_op_sp; }
+      //-- if (overtime2.length !== 0) { this.overtime_02 = overtime2[overtime2.length - 1].value; } else { this.overtime_02 = this.get_service_search[0].accident_op_sp; }
+      //-- if (overtime3.length !== 0) { this.overtime_03 = overtime3[overtime3.length - 1].value; } else { this.overtime_03 = this.get_service_search[0].manpower_out_flow_op_sp; }
+      //-- if (overtime4.length !== 0) { this.overtime_04 = overtime4[overtime4.length - 1].value; } else { this.overtime_04 = this.get_service_search[0].manpower_in_flow_op_sp; }
+      if (overtime1.length > 0) { this.overtime_01 = overtime1[overtime1.length - 1].value_sp; } else { this.overtime_01 = this.get_service_search[0].overtime_op_sp; }
+      if (overtime2.length > 0) { this.overtime_02 = overtime2[overtime2.length - 1].value_sp; } else { this.overtime_02 = this.get_service_search[0].accident_op_sp; }
+      if (overtime3.length > 0) { this.overtime_03 = overtime3[overtime3.length - 1].value_sp; } else { this.overtime_03 = this.get_service_search[0].manpower_out_flow_op_sp; }
+      if (overtime4.length > 0) { this.overtime_04 = overtime4[overtime4.length - 1].value_sp; } else { this.overtime_04 = this.get_service_search[0].manpower_in_flow_op_sp; }
 
       ///////// OP
-      if (overtime1_op.length !== 0) { this.overtime_01_op = overtime1_op[overtime1_op.length - 1].value_op; } else { this.overtime_01_op = this.get_service_search[0].overtime; }
-      if (overtime2_op.length !== 0) { this.overtime_02_op = overtime2_op[overtime2_op.length - 1].value_op; } else { this.overtime_02_op = this.get_service_search[0].accident; }
-      if (overtime3_op.length !== 0) { this.overtime_03_op = overtime3_op[overtime3_op.length - 1].value_op; } else { this.overtime_03_op = this.get_service_search[0].manpower_out_flow; }
-      if (overtime4_op.length !== 0) { this.overtime_04_op = overtime4_op[overtime4_op.length - 1].value_op; } else { this.overtime_04_op = this.get_service_search[0].manpower_in_flow; }
+      if (overtime1_op.length > 0) { this.overtime_01_op = overtime1_op[overtime1_op.length - 1].value_op; } else { this.overtime_01_op = this.get_service_search[0].overtime; }
+      if (overtime2_op.length > 0) { this.overtime_02_op = overtime2_op[overtime2_op.length - 1].value_op; } else { this.overtime_02_op = this.get_service_search[0].accident; }
+      if (overtime3_op.length > 0) { this.overtime_03_op = overtime3_op[overtime3_op.length - 1].value_op; } else { this.overtime_03_op = this.get_service_search[0].manpower_out_flow; }
+      if (overtime4_op.length > 0) { this.overtime_04_op = overtime4_op[overtime4_op.length - 1].value_op; } else { this.overtime_04_op = this.get_service_search[0].manpower_in_flow; }
     }
   }
   sv_search() {

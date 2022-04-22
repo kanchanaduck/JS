@@ -161,7 +161,7 @@ namespace JKSAPI.Controllers
                         intmanpower_attendance = intmanpower - intmanpower_absent;
 
                         intmanpower_absent_sp = Convert.ToInt32(data.manpower_absent_sp);
-                        intmanpower_attendance_sp = intmanpower - intmanpower_absent_sp;
+                        //--intmanpower_attendance_sp = intmanpower - intmanpower_absent_sp;
 
                         // worker_performance, operation_rate, total_performance
                         double tp = 0;
@@ -218,7 +218,8 @@ namespace JKSAPI.Controllers
                         data_jks.total_performance = Math.Round(tp, 2).ToString();
                         data_jks.comment = data.comment;
 
-                        data_jks.manpower_attendance_sp = intmanpower_attendance_sp;
+                        //--data_jks.manpower_attendance_sp = intmanpower_attendance_sp;
+                        data_jks.manpower_attendance_sp = data.manpower_attendance_sp;
                         data_jks.manpower_absent_sp = data.manpower_absent_sp;
                         data_jks.working_man_op_sp = data.working_man_op_sp;
                         data_jks.overtime_op_sp = data.overtime_op_sp;
@@ -320,12 +321,12 @@ namespace JKSAPI.Controllers
 
                     var vaules_ot = await context.T_SUMMARY_OT.FirstOrDefaultAsync
                     (x => x.date_input == data.date_input
-&& x.wc_code == data.wc_code
-&& x.model_code == data.model_code
-&& x.process_code == data.process_code
-&& x.cell_code == data.cell_code
-&& x.shift_code == data.shift_code
-&& x.production_shift == data.production_shift);
+                        && x.wc_code == data.wc_code
+                        && x.model_code == data.model_code
+                        && x.process_code == data.process_code
+                        && x.cell_code == data.cell_code
+                        && x.shift_code == data.shift_code
+                        && x.production_shift == data.production_shift);
 
                     if (vaules_ot == null)
                     {
