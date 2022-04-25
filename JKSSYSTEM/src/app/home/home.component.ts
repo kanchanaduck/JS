@@ -61,7 +61,7 @@ export class HomeComponent implements OnInit {
         }
       });
       const response = await instance.post('/Summary/SummaryAll/Search', params)
-      console.log("summaryall: ", response.data);
+      // console.log("summaryall: ", response.data);
 
       response.data.check_overtime = params.production_shift;
       this.items = this.serviceJksService.clearservice_search();
@@ -100,7 +100,7 @@ export class HomeComponent implements OnInit {
         }
       });
       const response = await instance.post('/SummaryTemp/Tss/Search', params)
-      console.log("search_temp: ", response.data);
+      // console.log("search_temp: ", response.data);
 
       let sum = 0;
       let sum_extrawork = 0;

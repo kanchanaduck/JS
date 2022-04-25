@@ -7,9 +7,6 @@ import { ServiceJksService } from '../../service-jks.service';
 import Swal from 'sweetalert2'
 import { MatDatepickerInputEvent } from '@angular/material';
 import { formatDate } from '@angular/common';
-import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
-import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
-import { Console } from 'console';
 
 interface controls {
   name: string;
@@ -462,7 +459,7 @@ export class HomeKeysComponent implements OnInit {
       });
       // console.log("params SearchST: ", params);
       const response = await instance.post('/Summary/SummaryAll/SearchST', params)
-      console.log("SearchST  service_prodouction: ", response);
+      // console.log("SearchST  service_prodouction: ", response);
 
       this.itemsST = this.ServiceJksService.clearservice_prodouction();
       this.itemsST = this.ServiceJksService.service_prodouction(response.data)
@@ -590,8 +587,6 @@ export class HomeKeysComponent implements OnInit {
       const overtime3 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime03'; });
       const overtime4 = this.v_getovertime.filter((item: any) => { return item.header === 'overtime04'; });
 
-      console.log("overtime1: ", overtime1)
-
       ///////// OP
       const overtime1_op = this.v_getovertime.filter((item: any) => { return item.header_op === 'overtime01_op'; });
       const overtime2_op = this.v_getovertime.filter((item: any) => { return item.header_op === 'overtime02_op'; });
@@ -649,7 +644,8 @@ export class HomeKeysComponent implements OnInit {
   sv: any;
   sv_json() {
     if (this.sh_gobal_cell) {
-      // console.log('this.attendance: ', this.attendance) // console.log('this.v_actual_output: ', this.v_actual_output)
+      // console.log('this.attendance: ', this.attendance) 
+      // console.log('this.v_actual_output: ', this.v_actual_output)
       if (this.attendance === 0 && this.attendance_sp === 0) { // console.log("manpower_attendance === 0");
         this.get_service_search = this.ServiceJksService.getservice_search();
         if (this.get_service_search.length > 0) { // console.log('service_search > 0 ')
@@ -665,8 +661,10 @@ export class HomeKeysComponent implements OnInit {
           this.attendance_sp = parseInt(this.manpower_sp) - this.absent_sp;
           // this.working_time_total = ((parseInt(this.manpower_base) * 480) - (this.absent * 480));  // old
           let cal_op = this.fnCalOP();
-          this.working_time_total = ((this.attendance * 480) - (cal_op * 480));   // PLE
-          this.working_time_total_op_sp = ((this.attendance_sp * 480) - (cal_op * 480));  // PLE
+          //-- this.working_time_total = ((this.attendance * 480) - (cal_op * 480));   // PLE
+          //-- this.working_time_total_op_sp = ((this.attendance_sp * 480) - (cal_op * 480));  // PLE
+          this.working_time_total = isEmpty(this.get_service_search[0].working_man);
+          this.working_time_total_op_sp = isEmpty(this.get_service_search[0].working_man_op_sp);
 
           this.sv = {
             "date_input": this.apiDate,
@@ -778,7 +776,6 @@ export class HomeKeysComponent implements OnInit {
           "comment": this.txtcomment.nativeElement.value === undefined ? null : this.txtcomment.nativeElement.value
         }
       }
-      // console.log(this.sv)
       this.ServiceJksService.sv_update(this.sv);
     }
   }
