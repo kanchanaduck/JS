@@ -74,11 +74,12 @@ namespace JKSAPI.Controllers
                         }
                     }
 
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -166,12 +167,14 @@ namespace JKSAPI.Controllers
                         }
                     }
                 }
+                
                 //////////////////////////////////////////// fullpath
-                string path = Directory.GetCurrentDirectory();
-                string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                path = path.Remove(path.LastIndexOf("\\"));
+                //-- string path = Directory.GetCurrentDirectory();
+                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                string fullpath = Path.Combine(path, "files", file.file_name);
+                //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                string fullpath = Path.Combine("./files/", file.file_name);
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
                     file.file_form.CopyTo(stream);
@@ -241,11 +244,12 @@ namespace JKSAPI.Controllers
                     }
                 }
 
-                string path = Directory.GetCurrentDirectory();
-                string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                path = path.Remove(path.LastIndexOf("\\"));
+                //-- string path = Directory.GetCurrentDirectory();
+                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                string fullpath = Path.Combine(path, "files", file.file_name);
+                //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                string fullpath = Path.Combine("./files/", file.file_name);
 
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
@@ -443,11 +447,12 @@ namespace JKSAPI.Controllers
                     var data_old = await context.T_MANPOWER.ToListAsync();
                     context.T_MANPOWER.RemoveRange(data_old);
 
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -595,11 +600,12 @@ namespace JKSAPI.Controllers
         {
             try
             {
-                string path = Directory.GetCurrentDirectory();
-                string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                path = path.Remove(path.LastIndexOf("\\"));
+                //-- string path = Directory.GetCurrentDirectory();
+                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                string fullpath = Path.Combine(path, "files", file.file_name);
+                //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                string fullpath = Path.Combine("./files/", file.file_name);
 
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
@@ -912,11 +918,12 @@ namespace JKSAPI.Controllers
         {
             try
             {
-                string path = Directory.GetCurrentDirectory();
-                string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                path = path.Remove(path.LastIndexOf("\\"));
+                //-- string path = Directory.GetCurrentDirectory();
+                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                string fullpath = Path.Combine(path, "files", file.file_name);
+                //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                string fullpath = Path.Combine("./files/", file.file_name);
 
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
@@ -1300,11 +1307,12 @@ namespace JKSAPI.Controllers
                 string wc_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1384,11 +1392,12 @@ namespace JKSAPI.Controllers
                 string model_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1472,11 +1481,12 @@ namespace JKSAPI.Controllers
                 string process_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1553,11 +1563,12 @@ namespace JKSAPI.Controllers
                 string cell_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1633,11 +1644,12 @@ namespace JKSAPI.Controllers
                 string shift_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1714,11 +1726,12 @@ namespace JKSAPI.Controllers
                 string group_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1793,11 +1806,12 @@ namespace JKSAPI.Controllers
                 string gb_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1872,11 +1886,12 @@ namespace JKSAPI.Controllers
                 string tss_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -1951,11 +1966,12 @@ namespace JKSAPI.Controllers
                 string model_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -2029,11 +2045,12 @@ namespace JKSAPI.Controllers
                 string process_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -2107,11 +2124,12 @@ namespace JKSAPI.Controllers
                 string cell_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
@@ -2185,11 +2203,12 @@ namespace JKSAPI.Controllers
                 string shift_detail_ck = string.Empty;
                 try
                 {
-                    string path = Directory.GetCurrentDirectory();
-                    string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    path = path.Remove(path.LastIndexOf("\\"));
+                    //-- string path = Directory.GetCurrentDirectory();
+                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    string fullpath = Path.Combine(path, "files", file.file_name);
+                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    string fullpath = Path.Combine("./files/", file.file_name);
 
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {

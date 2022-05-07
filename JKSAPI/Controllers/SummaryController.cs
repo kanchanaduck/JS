@@ -155,7 +155,8 @@ namespace JKSAPI.Controllers
                     if (vaules_jks == null)
                     {
                         int intmanpower = 0, intmanpower_attendance = 0, intmanpower_absent = 0;
-                        int intmanpower_attendance_sp = 0, intmanpower_absent_sp = 0;
+                        //--int intmanpower_attendance_sp = 0; 
+                        int intmanpower_absent_sp = 0;
                         intmanpower = Convert.ToInt32(data.manpower);
                         intmanpower_absent = Convert.ToInt32(data.manpower_absent);
                         intmanpower_attendance = intmanpower - intmanpower_absent;

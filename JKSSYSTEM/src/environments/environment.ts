@@ -5,8 +5,8 @@
 
 export const environment = {
   production: false,
-  // apijks: 'https://localhost:5001/api',
-  apijks: 'http://cptsvs52t/api_jks/api',
+  apijks: 'https://localhost:5001/api',
+  // apijks: 'http://cptsvs52t/api_jks/api',
   api: 'http://cptsvs531:5000/api-check-sheet/api',
   //api_euc: 'http://cptsvs531:1000/middleware/oracle/euc', not ยูส
 };
