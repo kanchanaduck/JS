@@ -32,6 +32,7 @@ namespace JKSAPI
 
             services.AddDbContext<DBContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("ConnStr")));
+
             services.AddControllers();
             // services.AddSwaggerGen();
             // Register the Swagger generator, defining 1 or more Swagger documents

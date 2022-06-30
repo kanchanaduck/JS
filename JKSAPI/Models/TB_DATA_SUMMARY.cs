@@ -186,7 +186,7 @@ namespace JKSAPI
         public string gb_cell_code { get; set; }
 
         //jks
-        public int? op_meister { get; set; }
+        public int? op_meister { get; set; }
         public int? sp_meister { get; set; }
         public int? manpower { get; set; }
         public int? manpower_attendance { get; set; }
@@ -304,7 +304,7 @@ namespace JKSAPI
         public string block_group_detail { get; set; }
         public string gb_cell_detail { get; set; }
         //jks
-        public int? op_meister { get; set; }
+        public int? op_meister { get; set; }
         public int? sp_meister { get; set; }
         public int? manpower { get; set; }
         public int? manpower_attendance { get; set; }

@@ -74,19 +74,37 @@ namespace JKSAPI.Controllers
                         }
                     }
 
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                    // //-- string path = Directory.GetCurrentDirectory();
+                    // //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                    // //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
-
                         stream.Dispose();
                         stream.Close();
                     }
@@ -169,18 +187,37 @@ namespace JKSAPI.Controllers
                 }
                 
                 //////////////////////////////////////////// fullpath
-                //-- string path = Directory.GetCurrentDirectory();
-                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                //-- path = path.Remove(path.LastIndexOf("\\"));
+                // //-- string path = Directory.GetCurrentDirectory();
+                // //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
+                // //-- path = path.Remove(path.LastIndexOf("\\"));
 
-                //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                string fullpath = Path.Combine("./files/", file.file_name);
+                // //-- string fullpath = Path.Combine(path, "files", file.file_name);
+                // string fullpath = Path.Combine("./files/", file.file_name);
+                // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                // {
+                //     file.file_form.CopyTo(stream);
+                //     stream.Dispose();
+                //     stream.Close();
+                // }
+
+                string rootFolder = Directory.GetCurrentDirectory();
+                string pathString = @"\API site\files\jks_system\upload\";
+                string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                // Create Directory
+                if (!Directory.Exists(serverPath))
+                {
+                    Directory.CreateDirectory(serverPath);
+                }
+
+                // string fullpath = serverPath + model.file_name;
+                string fullpath = Path.Combine(serverPath + file.file_name);
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
                     file.file_form.CopyTo(stream);
                     stream.Dispose();
                     stream.Close();
                 }
+
                 //////////////////////////////////////////// SqlBulkCopy
                 var lines = System.IO.File.ReadAllLines(fullpath);
                 if (lines.Count() == 0) { }
@@ -249,14 +286,32 @@ namespace JKSAPI.Controllers
                 //-- path = path.Remove(path.LastIndexOf("\\"));
 
                 //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                string fullpath = Path.Combine("./files/", file.file_name);
+                // string fullpath = Path.Combine("./files/", file.file_name);
 
+                // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                // {
+                //     file.file_form.CopyTo(stream);
+
+                //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+
+                //     stream.Dispose();
+                //     stream.Close();
+                // }
+
+                string rootFolder = Directory.GetCurrentDirectory();
+                string pathString = @"\API site\files\jks_system\upload\";
+                string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                // Create Directory
+                if (!Directory.Exists(serverPath))
+                {
+                    Directory.CreateDirectory(serverPath);
+                }
+
+                // string fullpath = serverPath + model.file_name;
+                string fullpath = Path.Combine(serverPath + file.file_name);
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
                     file.file_form.CopyTo(stream);
-
-                    // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
-
                     stream.Dispose();
                     stream.Close();
                 }
@@ -452,8 +507,17 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
@@ -600,13 +664,16 @@ namespace JKSAPI.Controllers
         {
             try
             {
-                //-- string path = Directory.GetCurrentDirectory();
-                //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                //-- path = path.Remove(path.LastIndexOf("\\"));
+                string rootFolder = Directory.GetCurrentDirectory();
+                string pathString = @"\API site\files\jks_system\upload\";
+                string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                // Create Directory
+                if (!Directory.Exists(serverPath))
+                {
+                    Directory.CreateDirectory(serverPath);
+                }
 
-                //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                string fullpath = Path.Combine("./files/", file.file_name);
-
+                string fullpath = Path.Combine(serverPath + file.file_name);
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
                     file.file_form.CopyTo(stream);
@@ -621,10 +688,8 @@ namespace JKSAPI.Controllers
                 int cols = worksheet.Dimension.End.Column;
 
                 int k = 0;
+
                 List<string> listnon = new List<string>();
-
-                // List<T_MANPOWER> listnon_excel = new List<T_MANPOWER>();
-
                 List<string> listnon_wc = new List<string>();
                 List<string> listnon_model = new List<string>();
                 List<string> listnon_process = new List<string>();
@@ -634,6 +699,7 @@ namespace JKSAPI.Controllers
                 List<string> listnon_gb = new List<string>();
 
                 List<T_MANPOWER> list = new List<T_MANPOWER>();
+
                 for (int i = 1; i <= rows; i++)
                 {
                     if (i > 1)
@@ -706,34 +772,8 @@ namespace JKSAPI.Controllers
                         {
                             str = wc_detail + "/" + model_detail + "/" + process_detail + "/" + cell_detail + "/" + shift_detail + "/" + block_group_detail + "/" + gb_cell_code + "<br> ข้อมูลชุดนี้ไม่มีใน Master<br>";
                             listnon.Add(str);
-
-                            // listnon_excel.Add(new T_MANPOWER
-                            // {
-                            //     wc_code = wc_detail,
-                            //     model_code = model_detail,
-                            //     process_code = process_detail,
-                            //     cell_code = cell_detail,
-                            //     shift_code = shift_detail,
-                            //     block_group_code = block_group_detail,
-                            //     gb_cell_code = gb_cell_code
-                            // });
-
                             k++;
                         }
-                        // if (bg_data == null || gb_data == null)
-                        // {
-                        //     Console.WriteLine("bg gb");
-                        //     str = "Block Group: " + block_group_detail + "<br> Gobal Cell: " + gb_cell_code + "<br> ข้อมูลชุดนี้ไม่มีใน Master Block Group or Gobal Cell <br>";
-                        //     listnon.Add(str);
-
-                        //     listnon_excel.Add(new T_MANPOWER
-                        //     {
-                        //         block_group_code = block_group_detail,
-                        //         gb_cell_code = gb_cell_code
-                        //     });
-
-                        //     k++;
-                        // }
                         else
                         {
                             T_MANPOWER tb = new T_MANPOWER();
@@ -765,124 +805,12 @@ namespace JKSAPI.Controllers
                                 list.Add(tb);
                             }
                         }
-
                     }
                 }
 
 
                 if (k > 0 && k == listnon.Count())
                 {
-                    // if (listnon_excel.Count() > 0)
-                    // {
-                    //     // Excel
-                    //     var stream = new MemoryStream();
-                    //     using (var package2 = new ExcelPackage(stream))
-                    //     {
-                    //         var ws1 = package2.Workbook.Worksheets.Add("Master");
-
-                    //         // Row num
-                    //         // int recordIndexM = 2;
-                    //         // foreach (var item in listnon_excel.Distinct())
-                    //         // {
-                    //         //     ws1.Cells[recordIndexM, 1].Value = item.wc_code.ToString();
-                    //         //     ws1.Cells[recordIndexM, 2].Value = item.model_code.ToString();
-                    //         //     ws1.Cells[recordIndexM, 3].Value = "";
-                    //         //     ws1.Cells[recordIndexM, 4].Value = item.process_code.ToString();
-                    //         //     ws1.Cells[recordIndexM, 5].Value = item.cell_code.ToString();
-                    //         //     ws1.Cells[recordIndexM, 6].Value = item.shift_code.ToString();
-                    //         //     if (item.block_group_code != null)
-                    //         //     {
-                    //         //         ws1.Cells[recordIndexM, 7].Value = "";
-                    //         //         ws1.Cells[recordIndexM, 8].Value = item.block_group_code.ToString();
-                    //         //         ws1.Cells[recordIndexM, 9].Value = item.gb_cell_code.ToString();
-                    //         //         ws1.Cells[recordIndexM, 10].Value = "";
-                    //         //     }
-
-                    //         //     recordIndexM++;
-                    //         // }
-                    //         int it1 = 2;
-                    //         foreach (var item in listnon_wc)
-                    //         {
-                    //             ws1.Cells[it1, 1].Value = item.ToString();
-                    //             it1++;
-                    //         }
-                    //         int it2 = 2;
-                    //         foreach (var item in listnon_model)
-                    //         {
-                    //             ws1.Cells[it2, 2].Value = item.ToString();
-                    //             it2++;
-                    //         }
-                    //         int it3 = 2;
-                    //         foreach (var item in listnon_process)
-                    //         {
-                    //             ws1.Cells[it3, 4].Value = item.ToString();
-                    //             it3++;
-                    //         }
-                    //         int it4 = 2;
-                    //         foreach (var item in listnon_cell)
-                    //         {
-                    //             ws1.Cells[it4, 5].Value = item.ToString();
-                    //             it4++;
-                    //         }
-                    //         int it6 = 2;
-                    //         foreach (var item in listnon_shift)
-                    //         {
-                    //             ws1.Cells[it6, 6].Value = item.ToString();
-                    //             it6++;
-                    //         }
-                    //         int it7 = 2;
-                    //         foreach (var item in listnon_bg)
-                    //         {
-                    //             ws1.Cells[it7, 8].Value = item.ToString();
-                    //             it7++;
-                    //         }
-                    //         int it8 = 2;
-                    //         foreach (var item in listnon_gb)
-                    //         {
-                    //             ws1.Cells[it8, 9].Value = item.ToString();
-                    //             it8++;
-                    //         }
-                    //         // Header
-                    //         ws1.Cells[1, 1].Value = "wc_detail";
-                    //         ws1.Cells[1, 2].Value = "model_detail";
-                    //         ws1.Cells[1, 3].Value = "model_child";
-                    //         ws1.Cells[1, 4].Value = "process_detail";
-                    //         ws1.Cells[1, 5].Value = "cell_detail";
-                    //         ws1.Cells[1, 6].Value = "shift_detail";
-                    //         ws1.Cells[1, 7].Value = "block_group_code";
-                    //         ws1.Cells[1, 8].Value = "block_group_detail";
-                    //         ws1.Cells[1, 9].Value = "gb_cell_code";
-                    //         ws1.Cells[1, 10].Value = "gb_cell_detail";
-
-                    //         var workSheet = package2.Workbook.Worksheets.Add("Detail");
-
-                    //         // Row num
-                    //         int recordIndex = 2;
-                    //         foreach (var item in listnon_excel.Distinct())
-                    //         {
-                    //             workSheet.Cells[recordIndex, 1].Value = item.wc_code.ToString();
-                    //             workSheet.Cells[recordIndex, 2].Value = item.model_code.ToString();
-                    //             workSheet.Cells[recordIndex, 3].Value = item.model_code.ToString();
-                    //             workSheet.Cells[recordIndex, 4].Value = item.process_code.ToString();
-                    //             workSheet.Cells[recordIndex, 5].Value = item.process_code.ToString();
-                    //             workSheet.Cells[recordIndex, 6].Value = item.cell_code.ToString();
-                    //             workSheet.Cells[recordIndex, 7].Value = item.cell_code.ToString();
-                    //             workSheet.Cells[recordIndex, 8].Value = item.shift_code.ToString();
-                    //             recordIndex++;
-                    //         }
-                    //         // Header
-                    //         List<string> headerColumns = new List<string>()
-                    //     {
-                    //         "wc_detail","model_detail","model_detail","process_detail","process_detail","cell_detail","cell_detail","shift_detail"
-                    //     };
-                    //         stylesheets("Detail", headerColumns, 8, recordIndex, workSheet);
-
-                    //         package2.Save();
-                    //     }
-                    //     stream.Position = 0;
-                    //     string excelName = $"excelManpower-{DateTime.Now.ToString("yyyyMMddHHmmssfff")}.xlsx";
-                    //     return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", excelName);
-                    // }
                     return BadRequest(listnon);
                 }
                 else
@@ -923,8 +851,26 @@ namespace JKSAPI.Controllers
                 //-- path = path.Remove(path.LastIndexOf("\\"));
 
                 //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                string fullpath = Path.Combine("./files/", file.file_name);
+                // string fullpath = Path.Combine("./files/", file.file_name);
 
+                // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                // {
+                //     file.file_form.CopyTo(stream);
+                //     stream.Dispose();
+                //     stream.Close();
+                // }
+
+                string rootFolder = Directory.GetCurrentDirectory();
+                string pathString = @"\API site\files\jks_system\upload\";
+                string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                // Create Directory
+                if (!Directory.Exists(serverPath))
+                {
+                    Directory.CreateDirectory(serverPath);
+                }
+
+                // string fullpath = serverPath + model.file_name;
+                string fullpath = Path.Combine(serverPath + file.file_name);
                 using (Stream stream = new FileStream(fullpath, FileMode.Create))
                 {
                     file.file_form.CopyTo(stream);
@@ -1307,17 +1253,20 @@ namespace JKSAPI.Controllers
                 string wc_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                     string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1397,12 +1346,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1481,17 +1448,20 @@ namespace JKSAPI.Controllers
                 string process_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                     string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1568,12 +1538,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1644,17 +1632,20 @@ namespace JKSAPI.Controllers
                 string shift_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1731,12 +1722,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1806,17 +1815,20 @@ namespace JKSAPI.Controllers
                 string gb_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1891,12 +1903,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -1966,17 +1996,20 @@ namespace JKSAPI.Controllers
                 string model_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -2050,12 +2083,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -2124,17 +2175,20 @@ namespace JKSAPI.Controllers
                 string cell_detail_ck = string.Empty;
                 try
                 {
-                    //-- string path = Directory.GetCurrentDirectory();
-                    //-- string folder1 = path.Substring(path.LastIndexOf("\\") + 1);
-                    //-- path = path.Remove(path.LastIndexOf("\\"));
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
 
-                    //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
-
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }
@@ -2208,12 +2262,30 @@ namespace JKSAPI.Controllers
                     //-- path = path.Remove(path.LastIndexOf("\\"));
 
                     //-- string fullpath = Path.Combine(path, "files", file.file_name);
-                    string fullpath = Path.Combine("./files/", file.file_name);
+                    // string fullpath = Path.Combine("./files/", file.file_name);
 
+                    // using (Stream stream = new FileStream(fullpath, FileMode.Create))
+                    // {
+                    //     file.file_form.CopyTo(stream);
+                    //     // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
+                    //     stream.Dispose();
+                    //     stream.Close();
+                    // }
+
+                    string rootFolder = Directory.GetCurrentDirectory();
+                    string pathString = @"\API site\files\jks_system\upload\";
+                    string serverPath = rootFolder.Substring(0, rootFolder.LastIndexOf(@"\")) + pathString;
+                    // Create Directory
+                    if (!Directory.Exists(serverPath))
+                    {
+                        Directory.CreateDirectory(serverPath);
+                    }
+
+                    // string fullpath = serverPath + model.file_name;
+                    string fullpath = Path.Combine(serverPath + file.file_name);
                     using (Stream stream = new FileStream(fullpath, FileMode.Create))
                     {
                         file.file_form.CopyTo(stream);
-                        // var path = Path.Combine(Directory.GetCurrentDirectory(), file.file_name);
                         stream.Dispose();
                         stream.Close();
                     }

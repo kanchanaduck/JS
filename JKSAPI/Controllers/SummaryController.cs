@@ -154,33 +154,18 @@ namespace JKSAPI.Controllers
 
                     if (vaules_jks == null)
                     {
-                        int intmanpower = 0, intmanpower_attendance = 0, intmanpower_absent = 0;
-                        //--int intmanpower_attendance_sp = 0; 
-                        int intmanpower_absent_sp = 0;
-                        intmanpower = Convert.ToInt32(data.manpower);
-                        intmanpower_absent = Convert.ToInt32(data.manpower_absent);
-                        intmanpower_attendance = intmanpower - intmanpower_absent;
-
-                        intmanpower_absent_sp = Convert.ToInt32(data.manpower_absent_sp);
-                        //--intmanpower_attendance_sp = intmanpower - intmanpower_absent_sp;
-
-                        // worker_performance, operation_rate, total_performance
                         double tp = 0;
                         double worker_performance = 0, operation_rate = 0;
                         worker_performance = ((Convert.ToDouble(data.standard_time) / Convert.ToDouble(data.total_time)) * 100);
                         operation_rate = ((Convert.ToDouble(data.total_time) + Convert.ToDouble(data.extra_work) + Convert.ToDouble(data.job_special)) / Convert.ToDouble(data.detail_working)) * 100;
                         tp = (worker_performance * operation_rate) / 100;
 
-                        // worker_performance, operation_rate, total_performance    OP + SP
                         double tp_op_sp = 0;
                         double worker_performance_op_sp = 0, operation_rate_op_sp = 0;
                         worker_performance_op_sp = ((Convert.ToDouble(data.standard_time_op_sp) / Convert.ToDouble(data.total_time_op_sp)) * 100);
                         operation_rate_op_sp = ((Convert.ToDouble(data.total_time_op_sp) + Convert.ToDouble(data.extra_work) + Convert.ToDouble(data.job_special)) / Convert.ToDouble(data.detail_working_op_sp)) * 100;
                         tp_op_sp = (worker_performance_op_sp * operation_rate_op_sp) / 100;
 
-                        // Console.WriteLine("worker_performance: " + worker_performance.ToString());
-                        // Console.WriteLine("operation_rate: " + operation_rate.ToString());
-                        // Console.WriteLine(Math.Round(tp, 2).ToString());
 
                         Console.WriteLine("1");
                         T_SUMMARY_JKS data_jks = new T_SUMMARY_JKS();
@@ -196,10 +181,15 @@ namespace JKSAPI.Controllers
                         data_jks.gb_cell_code = data.gb_cell_code;
                         data_jks.op_meister = data.op_meister;
                         data_jks.sp_meister = data.sp_meister;
-                        data_jks.manpower = data.manpower;
-                        // data_jks.manpower_attendance = data.manpower_attendance;
-                        data_jks.manpower_attendance = intmanpower_attendance;
+                        //
+                        data_jks.manpower = data.op_meister + data.sp_meister;
+                        //
+                        data_jks.manpower_attendance = data.manpower_attendance;
                         data_jks.manpower_absent = data.manpower_absent;
+
+                        data_jks.manpower_attendance_sp = data.manpower_attendance_sp;
+                        data_jks.manpower_absent_sp = data.manpower_absent_sp;
+                        //
                         data_jks.extra_work = data.extra_work;
                         data_jks.job_special = data.job_special;
                         data_jks.total_extra_job = data.total_extra_job;
@@ -218,10 +208,6 @@ namespace JKSAPI.Controllers
                         data_jks.operation_rate = Math.Round(operation_rate, 2).ToString();
                         data_jks.total_performance = Math.Round(tp, 2).ToString();
                         data_jks.comment = data.comment;
-
-                        //--data_jks.manpower_attendance_sp = intmanpower_attendance_sp;
-                        data_jks.manpower_attendance_sp = data.manpower_attendance_sp;
-                        data_jks.manpower_absent_sp = data.manpower_absent_sp;
                         data_jks.working_man_op_sp = data.working_man_op_sp;
                         data_jks.overtime_op_sp = data.overtime_op_sp;
                         data_jks.accident_op_sp = data.accident_op_sp;
@@ -244,17 +230,6 @@ namespace JKSAPI.Controllers
                     }
                     else
                     {
-                        // manpower_attendance
-                        int intmanpower = 0, intmanpower_attendance = 0, intmanpower_absent = 0;
-                        int intmanpower_attendance_sp = 0, intmanpower_absent_sp = 0;
-                        intmanpower = Convert.ToInt32(data.manpower);
-                        intmanpower_absent = Convert.ToInt32(data.manpower_absent);
-                        intmanpower_attendance = intmanpower - intmanpower_absent;
-
-                        intmanpower_absent_sp = Convert.ToInt32(data.manpower_absent_sp);
-                        intmanpower_attendance_sp = intmanpower - intmanpower_absent_sp;
-
-                        // worker_performance, operation_rate, total_performance
                         double tp = 0;
                         double worker_performance = 0, operation_rate = 0;
                         worker_performance = ((Convert.ToDouble(data.standard_time) / Convert.ToDouble(data.total_time)) * 100);
@@ -272,15 +247,19 @@ namespace JKSAPI.Controllers
                         // Console.WriteLine("operation_rate: " + operation_rate.ToString());
                         // Console.WriteLine(Math.Round(tp, 2).ToString());
 
-                        Console.WriteLine("2");
                         vaules_jks.block_group_code = data.block_group_code;
                         vaules_jks.gb_cell_code = data.gb_cell_code;
                         vaules_jks.op_meister = data.op_meister;
                         vaules_jks.sp_meister = data.sp_meister;
-                        vaules_jks.manpower = data.manpower;
-                        // vaules_jks.manpower_attendance = data.manpower_attendance;
-                        vaules_jks.manpower_attendance = intmanpower_attendance;
+                        //
+                        vaules_jks.manpower = data.op_meister + data.sp_meister;
+                        //
+                        vaules_jks.manpower_attendance = data.manpower_attendance;
                         vaules_jks.manpower_absent = data.manpower_absent;
+
+                        vaules_jks.manpower_attendance_sp = data.manpower_attendance_sp;
+                        vaules_jks.manpower_absent_sp = data.manpower_absent_sp;
+                        //
                         vaules_jks.extra_work = data.extra_work;
                         vaules_jks.job_special = data.job_special;
                         vaules_jks.total_extra_job = data.total_extra_job;
@@ -299,9 +278,6 @@ namespace JKSAPI.Controllers
                         vaules_jks.operation_rate = Math.Round(operation_rate, 2).ToString();
                         vaules_jks.total_performance = Math.Round(tp, 2).ToString();
                         vaules_jks.comment = data.comment;
-
-                        vaules_jks.manpower_attendance_sp = intmanpower_attendance_sp;
-                        vaules_jks.manpower_absent_sp = data.manpower_absent_sp;
                         vaules_jks.working_man_op_sp = data.working_man_op_sp;
                         vaules_jks.overtime_op_sp = data.overtime_op_sp;
                         vaules_jks.accident_op_sp = data.accident_op_sp;
