@@ -67,12 +67,11 @@
             </td>
         </ng-container>
 
-        <ng-container matColumnDef="cal_extrawork">
+        <!-- <ng-container matColumnDef="cal_extrawork">
             <th mat-header-cell *matHeaderCellDef mat-sort-header>Open cal extrawork</th>
             <td mat-cell *matCellDef="let row">
                 <div *ngIf="row.cal_extrawork == true; else elseBlocke"><span class="text-success">{{row.cal_extrawork}}</span></div>
                 <ng-template #elseBlocke>
-                    <!-- {{row.cal_extrawork}} -->
                 </ng-template>
             </td>
         </ng-container>
@@ -82,10 +81,9 @@
             <td mat-cell *matCellDef="let row">
                 <div *ngIf="row.cal_jobspecial == true; else elseBlockj"><span class="text-success">{{row.cal_jobspecial}}</span></div>
                 <ng-template #elseBlockj>
-                    <!-- {{row.cal_jobspecial}} -->
                 </ng-template>
             </td>
-        </ng-container>
+        </ng-container> -->
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>

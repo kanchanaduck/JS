@@ -28,7 +28,6 @@ namespace JKSAPI.Controllers
             _config = config;
             this.context = context;
         }
-
         /// <summary>
         /// Add SummaryAll.
         /// </summary>
@@ -599,7 +598,7 @@ namespace JKSAPI.Controllers
 
             if (result == null)
             {
-                return BadRequest("ไม่พบข้อมูล");
+                return NotFound("ไม่พบข้อมูล");
             }
             else
             {
@@ -631,16 +630,17 @@ namespace JKSAPI.Controllers
         [Route("SummaryAll/SearchST")]
         public async Task<ActionResult> SearchST(T_SUMMARY_DATA data)
         {
-            var chk_result = await context.V_SUMMARY_JKS_OT.Where(e => e.date_input == data.date_input
-&& e.wc_code == data.wc_code
-&& e.model_code == data.model_code
-&& e.process_code == data.process_code
-&& e.cell_code == data.cell_code
-&& e.shift_code == data.shift_code
-&& e.production_shift == data.production_shift
-&& e.block_group_code == data.block_group_code
-&& e.gb_cell_code == data.gb_cell_code
-).ToListAsync();
+            var chk_result = await context.V_SUMMARY_JKS_OT.Where(e => 
+                                e.date_input == data.date_input
+                                && e.wc_code == data.wc_code
+                                && e.model_code == data.model_code
+                                && e.process_code == data.process_code
+                                && e.cell_code == data.cell_code
+                                && e.shift_code == data.shift_code
+                                && e.production_shift == data.production_shift
+                                && e.block_group_code == data.block_group_code
+                                && e.gb_cell_code == data.gb_cell_code
+                                ).ToListAsync();
             // Console.WriteLine(data.date_input);
             // Console.WriteLine(data.wc_code);
             // Console.WriteLine(data.model_code);
@@ -663,24 +663,25 @@ namespace JKSAPI.Controllers
                            {
                                cell_detail = e.cell_detail
                            }).FirstOrDefaultAsync();
-            // Console.WriteLine(chk_result.Count);
-            if (chk_result.Count == 0 || chk_result.Count > 0)
+
+            if (chk_result.Count > 0)
             {
-                // var d1 = Convert.ToDateTime(data.date_input).ToString("yyyy-MM-dd") + " 08:00:00.000"; 
-                // var d2 = Convert.ToDateTime(data.date_input).AddDays(1).ToString("yyyy-MM-dd") + " 07:59:59.999";
                 var d1 = Convert.ToDateTime(data.date_input).ToString("yyyy-MM-dd") + " 08:00:00.000";
                 var d2 = Convert.ToDateTime(data.date_input).AddDays(1).ToString("yyyy-MM-dd") + " 07:59:59.999";
 
-                // var str = $"Exec S_SUMMARY_OUTPUT @process_name = { p.process_detail }, @date_1 = { d1 }, @date_2 = { d2 }, @shift = { data.production_shift } ,@model = { data.model_code }";
-                // Console.WriteLine(str);
-                var result_ST = await context.S_SUMMARY_OUTPUT.FromSqlInterpolated($"Exec S_SUMMARY_OUTPUT @process_name = { p.process_detail }, @date_1 = { d1 }, @date_2 = { d2 }, @shift = { data.production_shift } ,@model = { data.model_code }").ToListAsync();
+                var result_ST = await context.S_SUMMARY_OUTPUT.FromSqlInterpolated(@$"Exec S_SUMMARY_OUTPUT 
+                        @process_name = { p.process_detail }, 
+                        @date_1 = { d1 }, @date_2 = { d2 }, 
+                        @shift = { data.production_shift } ,
+                        @model = { data.model_code }").ToListAsync();
+
                 if (result_ST.Count > 0)
                 {
                     return Ok(result_ST.Where(e => e.cell == c.cell_detail.ToString()).FirstOrDefault());
                 }
                 else
                 {
-                    return BadRequest("ไม่พบข้อมูล");
+                    return NotFound("ไม่พบข้อมูล");
                 }
             }
             else
@@ -702,7 +703,7 @@ namespace JKSAPI.Controllers
                 }
                 catch
                 {
-                    return BadRequest("ไม่พบข้อมูล");
+                    return NotFound("ไม่พบข้อมูล");
                 }
 
             }
@@ -773,12 +774,12 @@ namespace JKSAPI.Controllers
 
             var result = await (from e in context.V_CHART
                                 where e.date_input == data.date_input
-&& e.wc_code == data.wc_code
-&& e.model_code == data.model_code
-&& e.process_code == data.process_code
-&& e.cell_code == data.cell_code
-&& e.shift_code == data.shift_code
-&& e.production_shift == data.production_shift
+                                && e.wc_code == data.wc_code
+                                && e.model_code == data.model_code
+                                && e.process_code == data.process_code
+                                && e.cell_code == data.cell_code
+                                && e.shift_code == data.shift_code
+                                && e.production_shift == data.production_shift
 
                                 select new
                                 {

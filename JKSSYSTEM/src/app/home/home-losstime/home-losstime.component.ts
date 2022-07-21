@@ -22,7 +22,7 @@ export class HomeLosstimeComponent implements OnInit {
   displayedColumns: string[] = ['action', 'otherjob', 'tss_code', 'extra_work_no', 'manpower_pers', 'tss_min', 'mc_qty', 'respond', 'loss_time'];
   dataSource: any;
   getData: any;
-  values: number = 0;
+  values: string = "";
   @ViewChild('txtworkno') txtworkno: any;
   @ViewChild('txtman') txtman: any;
   @ViewChild('txttss') txttss: any;
@@ -65,7 +65,7 @@ export class HomeLosstimeComponent implements OnInit {
     this.txttss.nativeElement.value = "";
     this.txtqty.nativeElement.value = "";
     this.txtresponsible.nativeElement.value = "";
-    this.values = 0;
+    this.values = "";
 
     this.sh_tss = {
       value: event.value,
@@ -84,18 +84,27 @@ export class HomeLosstimeComponent implements OnInit {
       this.strdid = true;
     }
   }
-  onKey1(event: any) { // without type info
-    // if (!isNaN(parseInt(event.target.value))) {
-    //   this.values = parseInt(event.target.value);
-    // }
-    if (!isNaN(parseInt(event.target.value) * parseInt(this.txttss.nativeElement.value))) {
-      this.values = parseInt(event.target.value) * parseInt(this.txttss.nativeElement.value);
-    }
-  }
-  onKey(event: any) { // without type info
-    if (!isNaN(parseInt(event.target.value) * parseInt(this.txtman.nativeElement.value))) {
-      this.values = parseInt(event.target.value) * parseInt(this.txtman.nativeElement.value);
-    }
+
+
+  error: any = {
+    manpower: true,
+    tss: true,
+    qty: true,
+  };
+
+
+  onKey(event: any) { 
+
+    let manpower: any = (isNaN(this.txtman.nativeElement.value) || this.txtman.nativeElement.value==="")? 1: this.txtman.nativeElement.value
+    let tss: any = (isNaN(this.txttss.nativeElement.value) || this.txttss.nativeElement.value==="")? 1: parseFloat(this.txttss.nativeElement.value).toFixed(2)
+    let qty: any = (isNaN(this.txtqty.nativeElement.value) || this.txtqty.nativeElement.value==="")? 1: this.txtqty.nativeElement.value
+
+    this.error.manpower = manpower<1 || this.txtman.nativeElement.value==="" ? true:false;
+    this.error.tss = tss<0 || this.txttss.nativeElement.value==="" ? true:false;
+    this.error.qty = !this.strdid && ( qty<1 || this.txtqty.nativeElement.value==="") ? true:false;
+
+    this.values = parseFloat((manpower  * tss * (this.strdid? 1: qty)).toString()).toFixed(2);
+    
   }
 
   async submit() {
@@ -115,9 +124,9 @@ export class HomeLosstimeComponent implements OnInit {
           "gb_cell_code": this.get_service[this.get_service.length - 1].gb_cell_code,
           "tss_code": this.sh_tss.value,
           "extra_work_no": this.txtworkno.nativeElement.value,
-          "manpower_pers": (isNaN(parseInt(this.txtman.nativeElement.value)) ? 0 : parseInt(this.txtman.nativeElement.value)),
-          "tss_min": (isNaN(parseInt(this.txttss.nativeElement.value)) ? 0 : parseInt(this.txttss.nativeElement.value)),
-          "mc_qty": (isNaN(parseInt(this.txtqty.nativeElement.value)) ? 0 : parseInt(this.txtqty.nativeElement.value)),
+          "manpower_pers": (isNaN(parseInt(this.txtman.nativeElement.value)) ? null : parseInt(this.txtman.nativeElement.value)),
+          "tss_min": (isNaN(this.txttss.nativeElement.value) ? null : this.txttss.nativeElement.value),
+          "mc_qty": (isNaN(parseInt(this.txtqty.nativeElement.value)) ? null : parseInt(this.txtqty.nativeElement.value)),
           "respond": this.txtresponsible.nativeElement.value,
           "loss_time": this.values,
           "ins_by": this.userid,

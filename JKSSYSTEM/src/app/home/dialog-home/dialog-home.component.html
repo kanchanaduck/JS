@@ -11,7 +11,7 @@
     <div class="row f-10">
         <div class="col-3">
             <mat-form-field appearance="fill">
-                <mat-select [formControl]="tssControl" (selectionChange)="selectChang($event)" required>
+                <mat-select [formControl]="tssControl" (selectionChange)="selectChang($event)" required disabled="disabled">
                     <mat-option>-- Please choose an tss --</mat-option>
                     <mat-option *ngFor="let tss of tss" [value]="tss.tss_code">
                         {{tss.tss_code}} : {{tss.tss_detail}}
@@ -21,17 +21,34 @@
             </mat-form-field>
         </div>
         <div class="col-2"><input type="text" class="form-control input-bgcolor" [(ngModel)]="item.extra_work_no" #txtworkno></div>
-        <div class="col-2"><input type="text" class="form-control input-bgcolor" [(ngModel)]="item.manpower_pers" (keyup)="onKey1($event)" #txtman></div>
-        <div class="col-1"><input type="text" class="form-control input-bgcolor" [(ngModel)]="item.tss_min" (keyup)="onKey($event)" #txttss></div>
-        <div class="col-1"><input type="text" class="form-control {{strcss}}" [disabled]="strdid" [(ngModel)]="item.mc_qty" #txtqty></div>
+        <div class="col-2">
+            <input type="number" class="form-control input-bgcolor" [(ngModel)]="item.manpower_pers" 
+            (keyup)="onKey($event)" (mouseup)="onKey($event)" #txtman>
+            <small class="text-danger" *ngIf="error && error.manpower">กรุณากรอกเป็นเลขจำนวนเต็มบวก</small>
+        </div>
+        <div class="col-1">
+            <input type="number" class="form-control input-bgcolor" [(ngModel)]="item.tss_min" 
+            (keyup)="onKey($event)" (mouseup)="onKey($event)" #txttss>
+            <small class="text-danger" *ngIf="error && error.tss">กรุณากรอกเป็นเลขจำนวนเต็มบวก หรือทศนิยม 2 ตำแหน่ง</small>
+        </div>
+        <div class="col-1">
+            <input type="number" class="form-control 
+            {{strcss}}" [disabled]="strdid" [(ngModel)]="item.mc_qty" #txtqty 
+                (keyup)="onKey($event)" (mouseup)="onKey($event)">
+            <small class="text-danger" *ngIf="!strdid && error && error.qty">กรุณากรอกเป็นเลขจำนวนเต็มบวก</small>
+        </div>
         <div class="col-2"><input type="text" class="form-control input-bgcolor" [(ngModel)]="item.respond" #txtresponsible required></div>
-        <div class="col-1"><input type="text" disabled="disabled" class="form-control" [(ngModel)]="item.loss_time" value="{{values}}"></div>
+        <div class="col-1">
+            <input type="number" disabled="disabled" class="form-control" [(ngModel)]="item.loss_time" value="{{values}}">
+        </div>
     </div>
 
     <div class="row">
         <div class="col-2 offset-8"><button mat-button mat-dialog-close>No Thanks</button></div>
         <div class="col-2">
-            <button mat-raised-button class="bg-0f4289" mat-dialog-close (click)="submit()">Edit</button>
+            <button mat-raised-button class="bg-0f4289" mat-dialog-close 
+            [disabled]="error.manpower || error.tss || error.qty" 
+            (click)="submit()">Edit</button>
         </div>
     </div>
 </div>

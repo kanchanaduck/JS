@@ -20,7 +20,7 @@ import { environment } from '../../../environments/environment';
 })
 export class SettingTssCodeComponent implements OnInit {
 
-  displayedColumns: string[] = ['action', 'tss_code', 'tss_detail', 'cal_qty', 'cal_extrawork', 'cal_jobspecial'];
+  displayedColumns: string[] = ['action', 'tss_code', 'tss_detail', 'cal_qty',/*  'cal_extrawork', 'cal_jobspecial' */];
   dataSource: any;
   getData: any = [];
   getDataCSV: any = [];

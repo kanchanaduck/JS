@@ -70,7 +70,7 @@ namespace JKSAPI
         public string type { get; set; }
         public string reader { get; set; }
         public string process_name { get; set; }
-        public int process_qty { get; set; }
+        public int? process_qty { get; set; }
         public string cell { get; set; }
         public DateTime update_date { get; set; }
         public string update_by { get; set; }

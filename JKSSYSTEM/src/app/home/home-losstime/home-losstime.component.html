@@ -36,12 +36,30 @@
                     </mat-form-field>
                 </div>
                 <div class="col-2"><input type="text" class="form-control input-bgcolor" value="" #txtworkno required></div>
-                <div class="col-2"><input type="text" class="form-control input-bgcolor" (keyup)="onKey1($event)" #txtman></div>
-                <div class="col-1"><input type="text" class="form-control input-bgcolor" (keyup)="onKey($event)" #txttss></div>
-                <div class="col-1"><input type="text" class="form-control {{strcss}}" [disabled]="strdid" #txtqty></div>
+                <div class="col-2">
+                    <input type="number" class="form-control input-bgcolor" 
+                        (keyup)="onKey($event)" (mouseup)="onKey($event)" #txtman>
+                    <small class="text-danger" *ngIf="error && error.manpower">กรุณากรอกเป็นเลขจำนวนเต็มบวก</small>
+                </div>
+                <div class="col-1">
+                    <input type="number" class="form-control input-bgcolor" 
+                        (keyup)="onKey($event)" (mouseup)="onKey($event)" #txttss>
+                    <small class="text-danger" *ngIf="error && error.tss">กรุณากรอกเป็นเลขจำนวนเต็มบวก หรือทศนิยม 2 ตำแหน่ง</small>
+                </div>
+                <div class="col-1">
+                    <input type="number" class="form-control 
+                    {{strcss}}" [disabled]="strdid" #txtqty (keyup)="onKey($event)" (mouseup)="onKey($event)">                 
+                    <small class="text-danger" *ngIf="!strdid && error && error.qty">กรุณากรอกเป็นเลขจำนวนเต็มบวก</small>
+                </div>
                 <div class="col-2"><input type="text" class="form-control input-bgcolor" value="" #txtresponsible required></div>
-                <div class="col-1"><input type="text" disabled="disabled" class="form-control" value="{{values}}"></div>
-                <div class="col-1"><button mat-raised-button class="bg-0f4289" (click)="submit()">Add</button></div>
+                <div class="col-1">
+                    <input type="number" disabled="disabled" class="form-control" value="{{values}}">
+                </div>
+                <div class="col-1">
+                    <button mat-raised-button class="bg-0f4289" 
+                    [disabled]="error.manpower || error.tss || error.qty" 
+                    (click)="submit()">Add</button>
+                </div>
             </div>
         </mat-card-content>
     </mat-card>

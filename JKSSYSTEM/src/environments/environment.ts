@@ -5,14 +5,15 @@
 
 export const environment = {
   production: false,
-  // apijks: 'https://localhost:5001/api',
-  apijks: 'http://cptsvs52t/api-jks/api',
-  // apijks: 'http://cptsvs531:5000/api-jks/api',
+  // apijks: 'https://localhost:5001/api', //dev
+  // apijks: 'http://cptsvs531:5000/api-jks-test/api', //test
+  apijks: 'http://cptsvs531:5000/api-jks/api', //production
   api: 'http://cptsvs531:5000/api-check-sheet/api',
-  //api_euc: 'http://cptsvs531:1000/middleware/oracle/euc', not ยูส
 };
 
 // apijks: 'http://cptsvs531:5000/api_jks/api',
 // apijks: 'http://cptsvs52t/api_jks/api', //test
 // apijks: 'https://localhost:5001/api',
+
 //ng build --base-href=/jkssystem/    /// ระบุชื่อโฟลเดอร์ ให้ตรงกับบน Server ที่จะวาง
+//ng build --base-href=/jkssystem_test/

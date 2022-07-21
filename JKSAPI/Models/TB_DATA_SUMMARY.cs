@@ -144,9 +144,11 @@ namespace JKSAPI
         public string tss_code { get; set; }
         public string extra_work_no { get; set; }
         public int? manpower_pers { get; set; }
-        public int? tss_min { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? tss_min { get; set; }
         public int? mc_qty { get; set; }
-        public int? loss_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? loss_time { get; set; }
         public string ins_by { get; set; }
         public DateTime ins_date { get; set; }
         public string respond { get; set; }
@@ -167,9 +169,11 @@ namespace JKSAPI
         public string tss_code { get; set; }
         public string extra_work_no { get; set; }
         public int? manpower_pers { get; set; }
-        public int? tss_min { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? tss_min { get; set; }
         public int? mc_qty { get; set; }
-        public int? loss_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? loss_time { get; set; }
     }
 
     public class T_SUMMARY_DATA
@@ -410,9 +414,9 @@ namespace JKSAPI
         public string tss_code { get; set; }
         public string extra_work_no { get; set; }
         public int? manpower_pers { get; set; }
-        public int? tss_min { get; set; }
+        public decimal? tss_min { get; set; }
         public int? mc_qty { get; set; }
-        public int? loss_time { get; set; }
+        public decimal? loss_time { get; set; }
 
         public string shift_detail { get; set; }
     }
@@ -588,9 +592,9 @@ namespace JKSAPI
         public string tss_code { get; set; }
         public string extra_work_no { get; set; }
         public int? manpower_pers { get; set; }
-        public int? tss_min { get; set; }
+        public decimal? tss_min { get; set; }
         public int? mc_qty { get; set; }
-        public int? loss_time { get; set; }
+        public decimal? loss_time { get; set; }
 
     }
     public class V_ReportHistory

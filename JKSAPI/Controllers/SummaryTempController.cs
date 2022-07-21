@@ -66,6 +66,10 @@ namespace JKSAPI.Controllers
                 && x.shift_code == data.shift_code
                 && x.tss_code == data.tss_code
                 && x.extra_work_no == data.extra_work_no
+                && x.manpower_pers == data.manpower_pers
+                && x.tss_min == data.tss_min
+                && x.mc_qty == data.mc_qty
+                && x.respond == data.respond
                 );
 
             if (vaules == null)
@@ -73,11 +77,11 @@ namespace JKSAPI.Controllers
                 data.ins_date = DateTime.Now;
                 context.Add(data);
                 await context.SaveChangesAsync();
-                return Ok();
+                return Ok("บันทึกข้อมูลสำเร็จ");
             }
             else
             {
-                return BadRequest(data.tss_code + " ไม่สามารถเพิ่มข้อมูลได้");
+                return Conflict("มีข้อมูลนี้ในระบบอยู่แล้ว");
             }
         }
 
@@ -99,6 +103,7 @@ namespace JKSAPI.Controllers
 
             if (vaules != null)
             {
+                vaules.tss_code = data.tss_code;
                 vaules.extra_work_no = data.extra_work_no;
                 vaules.manpower_pers = data.manpower_pers;
                 vaules.tss_min = data.tss_min;
@@ -113,7 +118,7 @@ namespace JKSAPI.Controllers
             }
             else
             {
-                return BadRequest(data.tss_code + " ไม่สามารถแก้ไขข้อมูลได้");
+                return NotFound("ไม่สามารถแก้ไขข้อมูลได้ เนื่องจากไม่มีข้อมูลในระบบ");
             }
         }
 
@@ -132,7 +137,7 @@ namespace JKSAPI.Controllers
                 && x.extra_work_no == data.extra_work_no
             ));
             await context.SaveChangesAsync();
-            return Ok();
+            return NoContent();
         }
     }
 }

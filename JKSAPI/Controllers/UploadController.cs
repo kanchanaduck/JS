@@ -330,10 +330,10 @@ namespace JKSAPI.Controllers
                             T_ST_DB_TEMP model = new T_ST_DB_TEMP();
                             model.model = data[0].Trim();
                             model.mercury = data[1].Trim();
-                            model.type = data[2].Trim();
-                            model.reader = data[3].Trim();
+                            model.type = data[2].Trim()== "" ? null:data[2].Trim();
+                            model.reader = data[3].Trim()== "" ? null:data[3].Trim();
                             model.process_name = data[4].Trim();
-                            model.process_qty = Convert.ToInt32(data[5].Trim());
+                            model.process_qty = data[5].Trim() == "" ? null: Convert.ToInt32(data[5].Trim());
                             model.cell = data[6].Trim() == "" ? null : data[6].Trim();
                             model.update_date = DateTime.Now;
                             model.update_by = file.update_by;
