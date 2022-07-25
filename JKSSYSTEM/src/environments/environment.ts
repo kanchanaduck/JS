@@ -5,9 +5,8 @@
 
 export const environment = {
   production: false,
-  // apijks: 'https://localhost:5001/api', //dev
-  // apijks: 'http://cptsvs531:5000/api-jks-test/api', //test
-  apijks: 'http://cptsvs531:5000/api-jks/api', //production
+  apijks: 'https://localhost:5001/api', //dev
+  // apijks: 'http://cptsvs531:5000/api-jks/api', //production
   api: 'http://cptsvs531:5000/api-check-sheet/api',
 };
 
@@ -16,4 +15,3 @@ export const environment = {
 // apijks: 'https://localhost:5001/api',
 
 //ng build --base-href=/jkssystem/    /// ระบุชื่อโฟลเดอร์ ให้ตรงกับบน Server ที่จะวาง
-//ng build --base-href=/jkssystem_test/

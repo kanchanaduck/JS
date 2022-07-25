@@ -103,12 +103,18 @@ namespace JKSAPI
         public int? in_flow_min { get; set; }
         public int? in_flow_total { get; set; }
         public int? total_overtime { get; set; }
-        public double? standard_time { get; set; }
-        public double? standard_time_op_sp { get; set; }
-        public int? actual_time { get; set; }
-        public int? total_time { get; set; }
-        public int? actual_time_op_sp { get; set; }
-        public int? total_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal?  standard_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time_op_sp { get; set; }
         public string ins_by { get; set; }
         public DateTime ins_date { get; set; }
         public string update_by { get; set; }
@@ -245,12 +251,18 @@ namespace JKSAPI
         public int? in_flow_min { get; set; }
         public int? in_flow_total { get; set; }
         public int? total_overtime { get; set; }
-        public double? standard_time { get; set; }
-        public double? standard_time_op_sp { get; set; }
-        public int? actual_time { get; set; }
-        public int? total_time { get; set; }
-        public int? actual_time_op_sp { get; set; }
-        public int? total_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time_op_sp { get; set; }
 
         // SP
         public int? ot_60_qty_sp { get; set; }
@@ -363,11 +375,16 @@ namespace JKSAPI
         public int? in_flow_min { get; set; }
         public int? in_flow_total { get; set; }
         public int? total_overtime { get; set; }
-        public double? standard_time { get; set; }
-        public int? actual_time { get; set; }
-        public int? total_time { get; set; }
-        public int? actual_time_op_sp { get; set; }
-        public int? total_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time_op_sp { get; set; }
         
         // SP
         public int? ot_60_qty_sp { get; set; }
@@ -426,7 +443,8 @@ namespace JKSAPI
         [Key]
         public string cell { get; set; }
         public int? count_1 { get; set; }
-        public double? qty_1 { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? qty_1 { get; set; }
     }
 
     public class V_CHART
@@ -440,11 +458,16 @@ namespace JKSAPI
         public string cell_code { get; set; }
         public string shift_code { get; set; }
         public string production_shift { get; set; }
-        public int? Total_Working_Time { get; set; }
-        public int? Total_actual_time { get; set; }
-        public int? Non_working_time { get; set; }
-        public double? Total_standard_time { get; set; }
-        public double? PF_Loss { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? Total_Working_Time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? Total_actual_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? Non_working_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? Total_standard_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? PF_Loss { get; set; }
         public string gb_cell_code { get; set; }
 
     }
@@ -568,12 +591,18 @@ namespace JKSAPI
         public int? in_flow_min { get; set; }
         public int? in_flow_total { get; set; }
         public int? total_overtime { get; set; }
-        public double? standard_time { get; set; }
-        public int? actual_time { get; set; }
-        public int? total_time { get; set; }
-        public double? standard_time_op_sp {get; set;}
-        public int? actual_time_op_sp { get; set; }
-        public int? total_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? standard_time_op_sp {get; set;}
+        [DataType("DECIMAL(18,2)")]
+        public decimal? actual_time_op_sp { get; set; }
+        [DataType("DECIMAL(18,2)")]
+        public decimal? total_time_op_sp { get; set; }
     }
     public class V_Report_SummaryTSS
     {

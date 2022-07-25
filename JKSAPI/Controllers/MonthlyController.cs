@@ -85,7 +85,7 @@ namespace JKSAPI.Controllers
                             }
                             else
                             {
-                                return BadRequest("ไม่พบข้อมูล");
+                                return NotFound("ไม่พบข้อมูล");
                             }
                         }
                     }
@@ -149,7 +149,7 @@ namespace JKSAPI.Controllers
                                 DataRow dr = dt.NewRow();
                                 dr["tss_code"] = "non";
                                 dr["tss_info"] = "Non-working time";
-                                int sum = 0;
+                                decimal sum = 0;
                                 for (int i = 0; i < dt.Columns.Count; i++)
                                 {
                                     if (i > 1)
@@ -164,7 +164,7 @@ namespace JKSAPI.Controllers
                                             if (query_cal != null)
                                             {
                                                 // Console.WriteLine("tss_code: " + dt.Rows[j]["tss_code"].ToString());
-                                                sum += (int)dt.Rows[j][i];
+                                                sum += (decimal)dt.Rows[j][i];
                                             }
                                         }
                                         dr[i] = sum;
@@ -174,7 +174,7 @@ namespace JKSAPI.Controllers
                             }
                             else
                             {
-                                return BadRequest("ไม่พบข้อมูล");
+                                return NotFound("ไม่พบข้อมูล");
                             }
                         }
                     }
@@ -529,7 +529,7 @@ namespace JKSAPI.Controllers
                             DataRow dr = dt.NewRow();
                             dr["tss_code"] = "non";
                             dr["tss_info"] = "Non-working time";
-                            int sum = 0;
+                            decimal sum = 0;
                             for (int i = 0; i < dt.Columns.Count; i++)
                             {
                                 if (i > 1)
@@ -543,7 +543,7 @@ namespace JKSAPI.Controllers
                                         // if (dt.Rows[j]["tss_code"].ToString() != "150" && dt.Rows[j]["tss_code"].ToString() != "160")
                                         if (query_cal != null)
                                         {
-                                            sum += (int)dt.Rows[j][i];
+                                            sum += (decimal)dt.Rows[j][i];
                                         }
                                     }
                                     dr[i] = sum;
@@ -625,15 +625,15 @@ namespace JKSAPI.Controllers
                     {
                         if (dt.Rows[i][0].ToString() == "PF_Loss")
                         {
-                            ws.Cells[(start_row), (j + 2)].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), (j + 2)].Value = (decimal)(dt.Rows[i][j]);
                         }
                         else if (dt.Rows[i][0].ToString() == "Total_standard")
                         {
-                            ws.Cells[(start_row), (j + 2)].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), (j + 2)].Value = (decimal)(dt.Rows[i][j]);
                         }
                         else
                         {
-                            ws.Cells[(start_row), (j + 1)].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), (j + 1)].Value = (decimal)(dt.Rows[i][j]);
                         }
                         start_col = 6;
                     }
@@ -642,15 +642,15 @@ namespace JKSAPI.Controllers
                         ws.Cells[(start_row), start_col].Value = dt.Rows[i][0].ToString().Replace("_", " ");
                         if (dt.Rows[i][0].ToString() == "PF_Loss")
                         {
-                            ws.Cells[(start_row), start_col + 2].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), start_col + 2].Value = (decimal)(dt.Rows[i][j]);
                         }
                         else if (dt.Rows[i][0].ToString() == "Total_standard")
                         {
-                            ws.Cells[(start_row), start_col + 2].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), start_col + 2].Value = (decimal)(dt.Rows[i][j]);
                         }
                         else
                         {
-                            ws.Cells[(start_row), start_col + 1].Value = Convert.ToInt32(dt.Rows[i][j].ToString());
+                            ws.Cells[(start_row), start_col + 1].Value = (decimal) (dt.Rows[i][j]);
                         }
                         start_col += 5;
                     }

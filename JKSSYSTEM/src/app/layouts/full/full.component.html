@@ -14,7 +14,7 @@
         <!-- ============================================================== -->
         <div class="navbar-header">
             <a class="navbar-brand" routerLink="/home">
-                <b class="text-white">JKS SYSTEM <!-- <small class="text-primary">TEST</small> --></b>
+                <b class="text-white">JKS SYSTEM <small class="text-primary" *ngIf="!environment.production">TEST</small></b>
             </a>
         </div>
         <!-- ============================================================== -->
