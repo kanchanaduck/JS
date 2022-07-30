@@ -333,7 +333,7 @@ namespace JKSAPI.Controllers
                             model.type = data[2].Trim()== "" ? null:data[2].Trim();
                             model.reader = data[3].Trim()== "" ? null:data[3].Trim();
                             model.process_name = data[4].Trim();
-                            model.process_qty = data[5].Trim() == "" ? null: Convert.ToInt32(data[5].Trim());
+                            model.process_qty = data[5].Trim() == "" ? null: Convert.ToDecimal(data[5]);
                             model.cell = data[6].Trim() == "" ? null : data[6].Trim();
                             model.update_date = DateTime.Now;
                             model.update_by = file.update_by;
@@ -374,7 +374,6 @@ namespace JKSAPI.Controllers
                 return StatusCode(500, $"Internal server error: {ex}");
             }
         }
-
         [HttpPost]
         [Route("UploadEUC")]
         public async Task<IActionResult> UploadEUC()
@@ -480,7 +479,7 @@ namespace JKSAPI.Controllers
             catch (Exception a)
             {
                 Console.WriteLine(a.Message);
-                return Ok(a.Message);
+                return BadRequest(a.Message);
             }
 
         }
